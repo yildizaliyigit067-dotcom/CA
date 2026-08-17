@@ -12,3 +12,4 @@ Bu depo, Levent Hoca'nın yaz projesi kapsamında hazırlanan, Hafta 1: Temel H�
 ## Ana fikir
 
 Basit yerel etkileşimler (üç hücrelik komşuluk kuralları), belirlenimci olmasına rağmen nitel olarak çok farklı büyük ölçekli davranışlar üretebiliyor. Bu, hücresel otomatlarda belirme olgusunun somut bir örneği.
+
