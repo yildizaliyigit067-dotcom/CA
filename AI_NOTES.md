@@ -1,4 +1,4 @@
-# AI Kullanım Notları — Hafta 1 (Elementary CA)
+# AI Kullanım Notları - Hafta 1 (Elementary CA)
 
 Bu dosya, ''01_elementary_CA.ipynb'' üzerinde çalışırken AI'dan (Claude,ChatGPT) hangi konularda destek aldığımı şeffaf biçimde kaydetmek için tutuluyor.
 
