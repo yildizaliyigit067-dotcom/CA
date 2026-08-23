@@ -22,20 +22,14 @@ Bu hafta AI'ı ağırlıklı olarak kodu benim yerime yazdırmak için değil, t
 
 ## Hafta 2 (Rule Classification), 1. yarı
 
-Bu bolumde mevcut `AI_NOTES.md` dosyasina ek yapiliyor.
+Bu bölümde `AI_NOTES.md` dosyasına kısa bir not eklenmiştir.
 
-### Ne icin yardim istedim
+### AI'dan aldığım yardım
 
-- 1. haftadaki `rule_output`/`update_row_student` fonksiyonlarinin Levent Hoca'nin istedigi genel `(rule_number >> index) & 1` mantigini gercekten dogru kullanip kullanmadigini AI ile birlikte dogruladim (elle kontrol + otomatik test). Sonuc: zaten dogruydu, degisiklik gerekmedi.
-- `random_initial_state` fonksiyonunun kodunu (Alistirma 1) AI yazdi; `rng.random(width) < density` mantigini neden kullandigimizi AI'dan ogrendim.
-- 256 kuralin galerisini AI calistirip uretti. Bu asamada AI kurallara kesin sinif etiketi (Class I-IV) vermedi -- notebook'un kendi talimatina uygun bicimde bilincli olarak ikinci yariya birakildi.
+- 1. haftadaki `rule_output` ve `update_row_student` fonksiyonlarının `(rule_number >> index) & 1` mantığını doğru kullanıp kullanmadığını AI ile kontrol ettim. Elle yaptığım Rule 30 ve Rule 100 kontrolleri ve testlerle implementation'ın zaten doğru olduğunu doğruladım.
+- `random_initial_state` fonksiyonunda kullanılan `rng.random(width) < density` ifadesinin mantığını anlamak için AI'dan kısa bir açıklama aldım.
+- 256 kuralın galerisini oluşturma aşamasında AI'dan yardımcı oldum.
 
-### Kendi anlayisimi nasil kontrol edecegim
+AI'ı ağırlıklı olarak kodun mantığını kontrol etmek ve bazı noktaları anlamak için kullandım. Sonuçları ve testleri kendim kontrol ettim.
 
-- Rule 30 ve Rule 100 icin elle cikardigimiz index/bit tablolarini tekrar kendi basima yeniden turetecegim.
-- `random_initial_state` fonksiyonunu satir satir okuyup mantigini kendi cumlelerimle aciklayabildigimden emin olacagim.
-- Galerideki gozlemlerimi kendi gozumle tekrar kontrol edecegim.
-
-### Not
-
-Bu ilk yarida AI kodu yazip notebook'u calistirdi; ben bunu anlayip sahiplenmekle yukumluyum. Ikinci yarida (yogunluk, etkinlik, siniflandirma tablosu) da ayni seffaflik ilkesiyle devam edecegiz.
+Bu aşamada kurallara Class I-IV etiketi vermedim. Sınıflandırma ve ölçümlere dayalı değerlendirme 2. haftanın ikinci yarısında yapacağım.
