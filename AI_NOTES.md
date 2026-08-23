@@ -28,8 +28,8 @@ Bu bölümde `AI_NOTES.md` dosyasına kısa bir not eklenmiştir.
 
 - 1. haftadaki `rule_output` ve `update_row_student` fonksiyonlarının `(rule_number >> index) & 1` mantığını doğru kullanıp kullanmadığını AI ile kontrol ettim. Elle yaptığım Rule 30 ve Rule 100 kontrolleri ve testlerle implementation'ın zaten doğru olduğunu doğruladım.
 - `random_initial_state` fonksiyonunda kullanılan `rng.random(width) < density` ifadesinin mantığını anlamak için AI'dan kısa bir açıklama aldım.
-- 256 kuralın galerisini oluşturma aşamasında AI'dan yardımcı oldum.
+- 256 kuralın galerisini oluşturma aşamasında AI'dan yardım aldım.
 
 AI'ı ağırlıklı olarak kodun mantığını kontrol etmek ve bazı noktaları anlamak için kullandım. Sonuçları ve testleri kendim kontrol ettim.
 
-Bu aşamada kurallara Class I-IV etiketi vermedim. Sınıflandırma ve ölçümlere dayalı değerlendirme 2. haftanın ikinci yarısında yapacağım.
+Bu aşamada kurallara Class I-IV etiketi vermedim. Sınıflandırma ve ölçümlere dayalı değerlendirmeyi 2. haftanın ikinci yarısında yapacağım.
