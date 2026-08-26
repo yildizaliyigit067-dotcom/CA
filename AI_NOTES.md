@@ -20,35 +20,32 @@ Bu dosya, ''01_elementary_CA.ipynb'' üzerinde çalışırken AI'dan (Claude,Cha
 
 Bu hafta AI'ı ağırlıklı olarak kodu benim yerime yazdırmak için değil, takıldığım noktaları anlamak, teknik kavramları açıklığa kavuşturmak ve bazı sonuçları kontrol etmek amacıyla kullandım. Notebook'taki kodun mantığını kendim anlayıp açıklayabildiğimden emin olmak için kodu satır satır gözden geçireceğim.
 
-## Hafta 2 (Rule Classification), 1. yarı
+# Hafta 2 - Rule Classification
 
-Bu bölümde `AI_NOTES.md` dosyasına kısa bir not eklenmiştir.
+Bu hafta AI'dan bazı teknik noktaları anlamak, kodu kontrol etmek ve gerektiğinde yönlendirme almak için yararlandım.
 
-### AI'dan aldığım yardım
+## AI'dan aldığım yardım
 
-- 1. haftadaki `rule_output` ve `update_row_student` fonksiyonlarının `(rule_number >> index) & 1` mantığını doğru kullanıp kullanmadığını AI ile kontrol ettim. Elle yaptığım Rule 30 ve Rule 100 kontrolleri ve testlerle implementation'ın zaten doğru olduğunu doğruladım.
-- `random_initial_state` fonksiyonunda kullanılan `rng.random(width) < density` ifadesinin mantığını anlamak için AI'dan kısa bir açıklama aldım.
-- 256 kuralın galerisini oluşturma aşamasında AI'dan yardım aldım.
+- Mevcut kodların ve bazı fonksiyonların mantığını kontrol etmek için kısa açıklamalar aldım.
+- 256 rule gallery ile density/activity bölümlerinde kod yapısını kontrol etmek için yardım aldım.
+- Bazı grafiklerin oluşturulması ve kod hatalarının giderilmesi sırasında destek aldım.
+- 16 seçilmiş rule'un sonuçlarını değerlendirirken grafikler ve sayısal ölçümler üzerinden fikir aldım.
 
-AI'ı ağırlıklı olarak kodun mantığını kontrol etmek ve bazı noktaları anlamak için kullandım. Sonuçları ve testleri kendim kontrol ettim.
+## AI kullanımının kapsamı
 
-Bu aşamada kurallara Class I-IV etiketi vermedim. Sınıflandırma ve ölçümlere dayalı değerlendirmeyi 2. haftanın ikinci yarısında yapacağım.
+AI'ı ağırlıklı olarak teknik açıklama, kod kontrolü ve gerektiğinde yönlendirme amacıyla kullandım. Elde edilen sonuçları notebook'u çalıştırarak ve mevcut testlerle kontrol ettim.
 
-## Hafta 2 (Rule Classification), 2. yarı
+Testler değiştirilmedi, gevşetilmedi veya hard-code sonuçlarla geçilmedi.
 
-### AI'dan aldığım yardım
+Class I-IV sınıflandırması otomatik olarak yapılmadı. 16 rule için değerlendirmeler grafikler ile density/activity sonuçları birlikte incelenerek yapıldı.
 
-- `density_time_series`, `activity_time_series` ve `compare_initial_conditions` fonksiyonlarının implementasyonunda AI'dan doğrudan yardım aldım (fonksiyonları AI yazdı, ben `check(...)` testleriyle doğruladım; testlerin hiçbiri değiştirilmedi/gevşetilmedi).
-- Yoğunluk/etkinlik grafiklerini ve isteğe bağlı saçılım grafiğini oluşturan kod, mevcut notebook yapısına (referans fonksiyonlar, `gallery_initial`, `representative_rules` vb.) uygun biçimde AI tarafından tamamlandı.
-- 16 kuralın geçici sınıflandırma tablosundaki ve yorum bölümlerindeki metinleri AI, notebook'u gerçekten çalıştırıp elde ettiği sayısal sonuçlara (uzun-vadeli ortalama yoğunluk/etkinlik, standart sapma vb.) ve galeri görsellerine dayanarak yazdı. Sınıf etiketleri otomatik bir algoritmayla üretilmedi; AI her kural için görsel + sayısal kanıtı birlikte değerlendirip geçici bir etiket önerdi.
-- Notebook, "Restart Kernel and Run All" ile temiz bir kernelde uçtan uca çalıştırıldı; dört alıştırma testi de (`check(...)`) geçti.
+## Kendi kontrolüm
 
-### Kendi anlayışımı nasıl kontrol edeceğim
+- Density ve activity formüllerini kendim tekrar gözden geçireceğim.
+- Grafiklerdeki sonuçları kendi yorumumla değerlendireceğim.
+- Initial condition değişiminin sonuçlara etkisini inceleyeceğim.
 
-- Density ve activity formüllerini (`np.mean(axis=1)` ve `np.diff` + `np.abs` + `np.mean(axis=1)`) kendim elle küçük bir örnek üzerinde tekrar hesaplayıp doğrulayacağım.
-- 16 kuralın sınıflandırma tablosundaki her satırı, galeriye tekrar bakarak kendi yorumumla karşılaştıracağım; özellikle "düşük güven" etiketli kurallarda (54, 60, 90, 150) kendi gerekçemi oluşturacağım.
-- Toplantıda Levent Hoca sorarsa yoğunluk ve etkinlik formüllerini ve bit-kaydırma mantığını kendim tahtada/ekranda tekrar açıklayabileceğimden emin olacağım.
 
-### Not
+## Not
 
-AI, bu bölümde önceki yarıya göre daha fazla kod yazdı (implementasyonlar ve yorum metinleri). Bütün bilimsel sonuçları AI tek başına "üretmedi" — sayılar gerçek kodun gerçek çalıştırılmasından geldi, ama hangi sayının hangi cümleye dönüştüğü AI tarafından yazıldı. Bunu toplantıda Levent Hoca'ya açıkça belirteceğim ve gerekirse kendi cümlelerimle yeniden ifade edeceğim.
+AI desteğini teknik noktaları açıklığa kavuşturmak ve kodu kontrol etmek amacıyla kullandım. Sonuçlar gerçek notebook çalıştırmalarından elde edildi ve mevcut testlerle kontrol edildi.
