@@ -7,7 +7,7 @@ Bu depo, Levent Hoca'nın yaz projesi kapsamında hazırlanan, Hafta 1: Temel H�
 
 ## İçerik
 
-- `01_elementary_CA.ipynb`: Tek boyutlu hücresel otomatların sıfırdan yazılması (Kural 0, 30, 90, 110), gözlem tablosu, küçük araştırma (Kural 90 için N1(t) formülü) ve çıkış sorusu.
+- `01_elementary_CA.ipynb`: Tek boyutlu hücresel otomatların sıfırdan yazılması (Kural 0, 30, 90, 110), gözlem/karşılaştırma tablosu, küçük araştırma (Kural 90 için N1(t) formülü) ve çıkış sorusu.
 - `02_rule_classification.ipynb`: 256 temel hücresel otomat kuralının sistematik incelenmesi, Wolfram'ın dört nitel sınıfı, yoğunluk ρ(t) ve etkinlik a(t) ölçümleriyle büyük ölçekli davranışın sınıflandırılması.
 - `AI_NOTES.md`: 1. haftanın ve 2. haftanın AI'dan hangi konularda yardım alındığının kaydı.
 
