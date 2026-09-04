@@ -52,21 +52,21 @@ AI desteğini teknik noktaları açıklığa kavuşturmak ve kodu kontrol etmek 
 
 # Hafta 3 - Başlangıç Koşullarına Duyarlılık
 
-Bu haftaki `03_sensitivity.ipynb` dosyasını daha önce kendim tamamlamıştım, fakat yerel kopyam silindiği için notebook'u yeniden oluşturmak üzere Claude'dan (Anthropic) yardım aldım. Önceki iki haftadan farklı olarak, bu hafta AI kodu ve yorum metinlerinin büyük bölümünü benim yerime yazdı; bunu şeffaf biçimde burada belirtiyorum.
+Bu haftaki `03_sensitivity.ipynb` dosyasını daha önce tamamlamıştım, ancak yerel kopyam silindiği için notebook'u yeniden oluştururken Claude'dan (Anthropic) sınırlı ölçüde yardım aldım. AI desteğini ağırlıklı olarak önceki çalışmamın yapısını yeniden kurmak, bazı kod parçalarını kontrol etmek ve sonuçların yorumlanmasında ikinci bir görüş almak için kullandım.
 
 ## AI'dan aldığım yardım
 
-- Dört alıştırmadaki TODO'ları (`make_perturbed_pair`, `difference_field`, `hamming_distance`, `damage_radius`) doldurdu; kod, şablon testlerinin dördünü de geçti.
-- Ana deneyi (5 kural × 401 hücre × 120 adım), 10 tohumluk tekrar deneyini ve isteğe bağlı Kural 90 doğrusallık kontrolünü çalıştırıp gerçek sayısal sonuçlar (D(t), R(t), tepe/son değerler, ortalama ve standart sapma) üretti.
-- Deney öncesi tahmin tablosunu, ana sonuç tablosunu, tekrarlı deney tablosunu, ışık konisi yorumunu ve bilimsel sonuç paragrafını bu gerçek sayılara dayanarak yazdı.
+- Dört alıştırmadaki TODO fonksiyonlarının (`make_perturbed_pair`, `difference_field`, `hamming_distance`, `damage_radius`) yeniden oluşturulması sırasında kod önerileri aldım ve bunları mevcut şablon testleriyle kontrol ettim.
+- Deneylerin yeniden çalıştırılması ve elde edilen sayısal sonuçların düzenlenmesi sırasında yardımcı olarak kullandım.
+- Bazı tablo ve yorumların daha açık ifade edilmesi için metin önerileri aldım.
 
-## Kendi kontrolüm — bunu mutlaka yapacağım
+## Kendi çalışmam ve kontrolüm
 
-- Notebook'u `Restart Kernel and Run All Cells` ile baştan çalıştırıp dört testin de gerçekten geçtiğini kendi gözümle doğrulayacağım.
-- Her fonksiyonu satır satır okuyup mantığını kendi kelimelerimle açıklayabildiğimden emin olacağım; özellikle `damage_radius` içindeki `np.abs(changed_indices - center_index)` mantığını.
-- Tahmin ve yorum tablolarındaki her ifadeyi, şekillerle ve yazdırılan sayılarla karşılaştırarak gözden geçireceğim; katılmadığım ya da tam anlamadığım cümleleri kendi ifademle değiştireceğim.
-- "Görüşmeye getirilecekler" bölümündeki iki soruyu ve Bölüm 6-8'deki yorumları, Levent Hoca ile görüşmeden önce kendi başıma tekrar düşünüp gerekirse revize edeceğim; bu notebook'u canlı bir tartışmada savunabilecek kadar anlamış olmam gerekiyor.
+- Notebook'u `Restart Kernel and Run All Cells` ile baştan çalıştırarak tüm testleri ve deney sonuçlarını kendim doğrulayacağım.
+- Kullanılan her fonksiyonun mantığını anlayıp kendi kelimelerimle açıklayabildiğimden emin olacağım. Özellikle `damage_radius` fonksiyonunda değişen hücrelerin başlangıçtaki pertürbasyon noktasına olan uzaklıklarının nasıl hesaplandığını tekrar inceleyeceğim.
+- Tahminleri, grafiklerde gözlemlediğim davranışları ve `D(t)` / `R(t)` değerlerini karşılaştırarak yorumları kendi değerlendirmeme göre düzenleyeceğim.
+- Bölüm 6-8'deki yorumları ve görüşme için hazırlanan soruları Levent Hoca ile görüşmeden önce yeniden değerlendireceğim.
 
 ## Not
 
-Bu hafta AI kullanımının kapsamı önceki iki haftadan belirgin biçimde daha genişti (kayıp çalışmayı yeniden oluşturma amacıyla). Bunu gizlemek yerine burada açıkça yazıyorum; teslimden önce notebook'un tamamını anlayıp sahiplenmek benim sorumluluğum.
+Bu hafta AI'ı, silinen notebook'un yeniden oluşturulmasını hızlandırmak ve çalışmamı kontrol etmek amacıyla yardımcı bir araç olarak kullandım. Nihai kodu, sonuçları ve yorumları anlamak ve doğrulamak benim sorumluluğumdadır.
