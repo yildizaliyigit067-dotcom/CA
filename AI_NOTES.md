@@ -49,3 +49,24 @@ Class I-IV sınıflandırması otomatik olarak yapılmadı. 16 rule için değer
 ## Not
 
 AI desteğini teknik noktaları açıklığa kavuşturmak ve kodu kontrol etmek amacıyla kullandım. Sonuçlar gerçek notebook çalıştırmalarından elde edildi ve mevcut testlerle kontrol edildi.
+
+# Hafta 3 - Başlangıç Koşullarına Duyarlılık
+
+Bu haftaki `03_sensitivity.ipynb` dosyasını daha önce kendim tamamlamıştım, fakat yerel kopyam silindiği için notebook'u yeniden oluşturmak üzere Claude'dan (Anthropic) yardım aldım. Önceki iki haftadan farklı olarak, bu hafta AI kodu ve yorum metinlerinin büyük bölümünü benim yerime yazdı; bunu şeffaf biçimde burada belirtiyorum.
+
+## AI'dan aldığım yardım
+
+- Dört alıştırmadaki TODO'ları (`make_perturbed_pair`, `difference_field`, `hamming_distance`, `damage_radius`) doldurdu; kod, şablon testlerinin dördünü de geçti.
+- Ana deneyi (5 kural × 401 hücre × 120 adım), 10 tohumluk tekrar deneyini ve isteğe bağlı Kural 90 doğrusallık kontrolünü çalıştırıp gerçek sayısal sonuçlar (D(t), R(t), tepe/son değerler, ortalama ve standart sapma) üretti.
+- Deney öncesi tahmin tablosunu, ana sonuç tablosunu, tekrarlı deney tablosunu, ışık konisi yorumunu ve bilimsel sonuç paragrafını bu gerçek sayılara dayanarak yazdı.
+
+## Kendi kontrolüm — bunu mutlaka yapacağım
+
+- Notebook'u `Restart Kernel and Run All Cells` ile baştan çalıştırıp dört testin de gerçekten geçtiğini kendi gözümle doğrulayacağım.
+- Her fonksiyonu satır satır okuyup mantığını kendi kelimelerimle açıklayabildiğimden emin olacağım; özellikle `damage_radius` içindeki `np.abs(changed_indices - center_index)` mantığını.
+- Tahmin ve yorum tablolarındaki her ifadeyi, şekillerle ve yazdırılan sayılarla karşılaştırarak gözden geçireceğim; katılmadığım ya da tam anlamadığım cümleleri kendi ifademle değiştireceğim.
+- "Görüşmeye getirilecekler" bölümündeki iki soruyu ve Bölüm 6-8'deki yorumları, Levent Hoca ile görüşmeden önce kendi başıma tekrar düşünüp gerekirse revize edeceğim; bu notebook'u canlı bir tartışmada savunabilecek kadar anlamış olmam gerekiyor.
+
+## Not
+
+Bu hafta AI kullanımının kapsamı önceki iki haftadan belirgin biçimde daha genişti (kayıp çalışmayı yeniden oluşturma amacıyla). Bunu gizlemek yerine burada açıkça yazıyorum; teslimden önce notebook'un tamamını anlayıp sahiplenmek benim sorumluluğum.
