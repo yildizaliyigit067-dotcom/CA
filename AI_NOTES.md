@@ -52,21 +52,21 @@ AI desteğini teknik noktaları açıklığa kavuşturmak ve kodu kontrol etmek 
 
 # Hafta 3 - Başlangıç Koşullarına Duyarlılık
 
-Bu haftaki `03_sensitivity.ipynb` dosyasını daha önce tamamlamıştım, ancak yerel kopyam silindiği için notebook'u yeniden oluştururken Claude'dan (Anthropic) sınırlı ölçüde yardım aldım. AI desteğini ağırlıklı olarak önceki çalışmamın yapısını yeniden kurmak, bazı kod parçalarını kontrol etmek ve sonuçların yorumlanmasında ikinci bir görüş almak için kullandım.
+Bu hafta "03_sensitivity.ipynb" dosyasında Claude'dan anlamadığım kısımlarda yardım aldım. AI desteğini ağırlıklı olarak önceki çalışmamın yapısını yeniden kurmak, bazı kod parçalarını kontrol etmek ve sonuçların yorumlanmasında ikinci bir görüş almak için kullandım.
 
 ## AI'dan aldığım yardım
 
-- Dört alıştırmadaki TODO fonksiyonlarının (`make_perturbed_pair`, `difference_field`, `hamming_distance`, `damage_radius`) yeniden oluşturulması sırasında kod önerileri aldım ve bunları mevcut şablon testleriyle kontrol ettim.
+- Dört alıştırmadaki TODO fonksiyonlarının ("make_perturbed_pair", "difference_field", "hamming_distance", "damage_radius") yeniden oluşturulması sırasında kod önerileri aldım ve bunları mevcut şablon testleriyle kontrol ettim.
 - Deneylerin yeniden çalıştırılması ve elde edilen sayısal sonuçların düzenlenmesi sırasında yardımcı olarak kullandım.
 - Bazı tablo ve yorumların daha açık ifade edilmesi için metin önerileri aldım.
 
 ## Kendi çalışmam ve kontrolüm
 
-- Notebook'u `Restart Kernel and Run All Cells` ile baştan çalıştırarak tüm testleri ve deney sonuçlarını kendim doğrulayacağım.
-- Kullanılan her fonksiyonun mantığını anlayıp kendi kelimelerimle açıklayabildiğimden emin olacağım. Özellikle `damage_radius` fonksiyonunda değişen hücrelerin başlangıçtaki pertürbasyon noktasına olan uzaklıklarının nasıl hesaplandığını tekrar inceleyeceğim.
-- Tahminleri, grafiklerde gözlemlediğim davranışları ve `D(t)` / `R(t)` değerlerini karşılaştırarak yorumları kendi değerlendirmeme göre düzenleyeceğim.
+- Notebook'u "Restart Kernel and Run All Cells" ile baştan çalıştırarak tüm testleri ve deney sonuçlarını kendim doğrulayacağım.
+- Kullanılan her fonksiyonun mantığını anlayıp kendi kelimelerimle açıklayabildiğimden emin olacağım. Özellikle "damage_radius" fonksiyonunda değişen hücrelerin başlangıçtaki pertürbasyon noktasına olan uzaklıklarının nasıl hesaplandığını tekrar inceleyeceğim.
+- Tahminleri, grafiklerde gözlemlediğim davranışları ve "D(t)" / "R(t)" değerlerini karşılaştırarak yorumları kendi değerlendirmeme göre düzenleyeceğim.
 - Bölüm 6-8'deki yorumları ve görüşme için hazırlanan soruları Levent Hoca ile görüşmeden önce yeniden değerlendireceğim.
 
 ## Not
 
-Bu hafta AI'ı, silinen notebook'un yeniden oluşturulmasını hızlandırmak ve çalışmamı kontrol etmek amacıyla yardımcı bir araç olarak kullandım. Nihai kodu, sonuçları ve yorumları anlamak ve doğrulamak benim sorumluluğumdadır.
+Bu hafta AI'ı; konuyı öğrenmek, anlamadığım kısımları anlamak ve çalışmamı kontrol etmek amacıyla yardımcı bir araç olarak kullandım. Nihai kodu, sonuçları ve yorumları anlamak ve doğrulamak benim sorumluluğumdaydı.
