@@ -1,138 +1,35 @@
-# AI Kullanım Notları - Hafta 1 (Elementary CA)
 
-Bu dosya, ''01_elementary_CA.ipynb'' üzerinde çalışırken AI'dan (Claude,ChatGPT) hangi konularda destek aldığımı şeffaf biçimde kaydetmek için tutuluyor.
+# Emergent Complexity in Cellular Automata
 
-## Ne için yardım istedim
+Bu depo, Levent Hoca'nın yaz projesi kapsamında hazırlanan Hafta 1: Temel Hücresel Otomatlar (Elementary CA), Hafta 2: Belirme ve Hücresel Otomatların Sınıflandırılması, Hafta 3: Başlangıç Koşullarına Duyarlılık, Hafta 4: Conway'in Yaşam Oyunu (Game of Life), Hafta 5: Rastgele Başlangıç Koşulları ve Hafta 6: Stochastic Game of Life çalışmalarını içerir. Fork kaynağı: subasilevent/CA.
 
-- Ödevdeki fonksiyonları kendim tamamladım. Takıldığım veya anlamını netleştirmek istediğim bazı noktalarda AI'dan destek aldım.
-- `rule_output` fonksiyonundaki bit kaydırma (`>>`) ve bit maskeleme (`&`) işlemlerinin nasıl çalıştığını anlamak için AI'dan açıklama istedim.
-- Kural 110 tablosunun neden belirli bir sırayla listeye yazıldığını anlamak için AI'dan kısa bir açıklama aldım.
-- Gözlem tablosundaki bazı değerleri kontrol etmek ve sonuçları karşılaştırmak için AI'dan destek aldım.
-- Küçük araştırma bölümünde Kural 90 ve $$N_1(t) = 2^{\text{popcount}_2(t)}$$ hipoteziyle ilgili yaklaşımı anlamak ve kendi sonuçlarımı kontrol etmek için AI'dan yararlandım.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/01_elementary_CA.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/02_rule_classification.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/03_sensitivity.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/04_game_of_life.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/05_random_initial_conditions.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/06_stochastic_life.ipynb)
 
-## Kendi anlayışımı nasıl kontrol edeceğim
+- `01_elementary_CA.ipynb`: Tek boyutlu hücresel otomatların sıfırdan yazılması (Kural 0, 30, 90, 110), gözlem ve karşılaştırma tablosu, küçük araştırma (Kural 90 için N1(t) formülü) ve çıkış sorusu.
+- `02_rule_classification.ipynb`: 256 temel hücresel otomat kuralının sistematik incelenmesi, Wolfram'ın dört nitel sınıfı, yoğunluk ρ(t) ve etkinlik a(t) ölçümleriyle büyük ölçekli davranışın sınıflandırılması.
+- `03_sensitivity.ipynb`: Tek hücrelik başlangıç sapmalarının beş kuralda (0, 4, 30, 90, 110) yayılması, fark alanı, normalize Hamming uzaklığı D(t) ve sapma yarıçapı R(t) ölçümleri, nedensel etki yarıçapıyla karşılaştırma, 10 tohumluk tekrar deneyi ve Kural 90'ın doğrusallığı üzerine isteğe bağlı araştırma.
+- `04_game_of_life.ipynb`: Conway'in Yaşam Oyunu'nun (B3/S23 kuralı) `np.roll` ve boolean maskeler kullanılarak uygulanması, still life, oscillator ve spaceship örneklerinin incelenmesi.
+- `05_random_initial_conditions.ipynb`: Game of Life'ta rastgele başlangıç koşullarının incelenmesi, başlangıç yoğunluğu $p$ değiştirilerek yoğunluk ve etkinlik zaman serilerinin hesaplanması, bağımsız tekrarlar, geç zaman ortalamaları, örneklem ortalaması ve standart sapma ile tipik davranışın araştırılması. M = 100 ve 300 karşılaştırmaları, q parametresinin etkisi ve farklı ızgara boyutlarıyla ek deneyler.
+- `06_stochastic_life.ipynb`: Game of Life'a rastgele ölüm olasılığının eklenmesi, yoğunluk, etkinlik ve sönme sürelerinin incelenmesi. Bağımsız ve kümelenmiş ölüm modellerinin karşılaştırılması, L = 60, 80, 100 ve 200 için 3.000 adımlık toplam 480 simülasyon.
+- `AI_NOTES.md`: 1., 2., 3., 4., 5. ve 6. haftalarda AI'dan hangi konularda yardım alındığının kaydı.
 
-- Notebook'taki her fonksiyonu ve "Hafta 1 Hazırlık Soruları" listesindeki soruları kendi başıma tekrar gözden geçireceğim.
-- Özellikle bit işlemleri ile Pascal üçgeni ve Kural 90 arasındaki ilişkiyi kendim açıklayabildiğimden emin olacağım.
-- Anlamadığım kısımları haftalık toplantıda Levent Hoca'ya soracağım.
+## Ana fikir
 
-## Not
+Basit yerel etkileşimler, belirlenimci olmasına rağmen nitel olarak çok farklı büyük ölçekli davranışlar üretebiliyor. Bu, hücresel otomatlarda belirme olgusunun somut bir örneği.
 
-Bu hafta AI'ı ağırlıklı olarak kodu benim yerime yazdırmak için değil, takıldığım noktaları anlamak, teknik kavramları açıklığa kavuşturmak ve bazı sonuçları kontrol etmek amacıyla kullandım. Notebook'taki kodun mantığını kendim anlayıp açıklayabildiğimden emin olmak için kodu satır satır gözden geçireceğim.
+Hafta 1'de temel hücresel otomat kuralları uygulanıyor. Kural 0, 30, 90 ve 110'un farklı başlangıç koşullarında oluşturduğu desenler inceleniyor.
 
-# Hafta 2 - Rule Classification
+Hafta 2'de 256 temel kural, Wolfram'ın dört nitel sınıfı üzerinden değerlendiriliyor. Yoğunluk ve etkinlik ölçümleriyle kuralların uzun vadeli davranışları karşılaştırılıyor.
 
-Bu hafta AI'dan bazı teknik noktaları anlamak, kodu kontrol etmek ve gerektiğinde yönlendirme almak için yararlandım.
+Hafta 3'te başlangıç koşullarındaki tek hücrelik değişikliklerin zamanla nasıl yayıldığı inceleniyor. Hamming uzaklığı ve sapma yarıçapıyla farklı kuralların başlangıç koşullarına duyarlılığı ölçülüyor.
 
-## AI'dan aldığım yardım
+Hafta 4'te iki boyutlu Game of Life modeline geçiliyor. Basit komşuluk kurallarından still life, oscillator ve spaceship gibi yapıların nasıl ortaya çıktığı gösteriliyor.
 
-- Mevcut kodların ve bazı fonksiyonların mantığını kontrol etmek için kısa açıklamalar aldım.
-- 256 rule gallery ile density/activity bölümlerinde kod yapısını kontrol etmek için yardım aldım.
-- Bazı grafiklerin oluşturulması ve kod hatalarının giderilmesi sırasında destek aldım.
-- 16 seçilmiş rule'un sonuçlarını değerlendirirken grafikler ve sayısal ölçümler üzerinden fikir aldım.
+Hafta 5'te rastgele başlangıç koşullarıyla çok sayıda deney yapılıyor. Farklı başlangıç yoğunluklarının sistemin davranışına etkisi, ortalama ve standart sapma kullanılarak inceleniyor. Ayrıca M, q ve ızgara boyutlarının sonuçlara etkisi karşılaştırılıyor.
 
-## AI kullanımının kapsamı
-
-AI'ı ağırlıklı olarak teknik açıklama, kod kontrolü ve gerektiğinde yönlendirme amacıyla kullandım. Elde edilen sonuçları notebook'u çalıştırarak ve mevcut testlerle kontrol ettim.
-
-Testler değiştirilmedi, gevşetilmedi veya hard-code sonuçlarla geçilmedi.
-
-Class I-IV sınıflandırması otomatik olarak yapılmadı. 16 rule için değerlendirmeler grafikler ile density/activity sonuçları birlikte incelenerek yapıldı.
-
-## Kendi kontrolüm
-
-- Density ve activity formüllerini kendim tekrar gözden geçireceğim.
-- Grafiklerdeki sonuçları kendi yorumumla değerlendireceğim.
-- Initial condition değişiminin sonuçlara etkisini inceleyeceğim.
-
-
-## Not
-
-AI desteğini teknik noktaları açıklığa kavuşturmak ve kodu kontrol etmek amacıyla kullandım. Sonuçlar gerçek notebook çalıştırmalarından elde edildi ve mevcut testlerle kontrol edildi.
-
-# Hafta 3 - Başlangıç Koşullarına Duyarlılık
-
-Bu hafta "03_sensitivity.ipynb" dosyasında Claude'dan anlamadığım kısımlarda yardım aldım. AI desteğini ağırlıklı olarak önceki çalışmamın yapısını yeniden kurmak, bazı kod parçalarını kontrol etmek ve sonuçların yorumlanmasında ikinci bir görüş almak için kullandım.
-
-## AI'dan aldığım yardım
-
-- Dört alıştırmadaki TODO fonksiyonlarının ("make_perturbed_pair", "difference_field", "hamming_distance", "damage_radius") yeniden oluşturulması sırasında kod önerileri aldım ve bunları mevcut şablon testleriyle kontrol ettim.
-- Deneylerin yeniden çalıştırılması ve elde edilen sayısal sonuçların düzenlenmesi sırasında yardımcı olarak kullandım.
-- Bazı tablo ve yorumların daha açık ifade edilmesi için metin önerileri aldım.
-
-## Kendi çalışmam ve kontrolüm
-
-- Notebook'u "Restart Kernel and Run All Cells" ile baştan çalıştırarak tüm testleri ve deney sonuçlarını kendim doğrulayacağım.
-- Kullanılan her fonksiyonun mantığını anlayıp kendi kelimelerimle açıklayabildiğimden emin olacağım. Özellikle "damage_radius" fonksiyonunda değişen hücrelerin başlangıçtaki pertürbasyon noktasına olan uzaklıklarının nasıl hesaplandığını tekrar inceleyeceğim.
-- Tahminleri, grafiklerde gözlemlediğim davranışları ve "D(t)" / "R(t)" değerlerini karşılaştırarak yorumları kendi değerlendirmeme göre düzenleyeceğim.
-- Bölüm 6-8'deki yorumları ve görüşme için hazırlanan soruları Levent Hoca ile görüşmeden önce yeniden değerlendireceğim.
-
-## Not
-
-Bu hafta AI'ı; konuyı öğrenmek, anlamadığım kısımları anlamak ve çalışmamı kontrol etmek amacıyla yardımcı bir araç olarak kullandım. Nihai kodu, sonuçları ve yorumları anlamak ve doğrulamak benim sorumluluğumdaydı.
-
-
-# Hafta 4 - Conway's Game of Life
-
-Bu haftaki `04_game_of_life.ipynb` çalışmasında bazı bölümlerde Claude'dan destek aldım.
-
-## AI'dan aldığım yardım
-
-- Bazı TODO fonksiyonlarında takıldığım yerlerde çözüm önerileri ve kod örnekleri aldım.
-- Yazılı sorular için fikir ve cevap önerilerinden yararlandım.
-- Kodun çalışmasını ve test sonuçlarını kontrol ederken AI'dan destek aldım.
-
-## Kendi çalışmam
-
-- Kodları notebook'a kendim yerleştirip Google Colab'da çalıştırdım.
-- `np.roll`, boolean maskeler ve B3/S23 kurallarının nasıl çalıştığını inceledim.
-- Still life, oscillator ve spaceship örneklerinin sonuçlarını kontrol ettim.
-- Kodun ve elde edilen sonuçların mantığını anlayarak çalışmayı tamamladım.
-
-## Not
-
-AI'ı özellikle takıldığım noktalarda yardımcı bir araç olarak kullandım. Notebook'u kendim çalıştırdım, sonuçları kontrol ettim ve kullanılan yöntemlerin mantığını anlamaya çalıştım.
-
-# Hafta 5 - Rastgele Başlangıç Koşulları
-
-Bu haftaki `05_random_initial_conditions.ipynb` çalışmasında bazı bölümlerde AI'dan sınırlı destek aldım.
-
-## AI'dan aldığım yardım
-
-- Takıldığım birkaç TODO kısmında kod önerileri aldım.
-- Bazı yazılı sorularda fikir almak için kullandım.
-- Kodların çalışmasını kontrol ederken destek aldım.
-
-## Kendi çalışmam
-
-- Notebook'u Google Colab'da kendim çalıştırdım.
-- Testleri ve sonuçları kontrol ettim.
-- Grafiklerde çıkan sonuçları inceledim.
-- Yoğunluk, etkinlik ve standart sapma kavramlarının nasıl kullanıldığını anlamaya çalıştım.
-
-## Not
-
-AI'ı sadece takıldığım yerlerde yardımcı bir araç olarak kullandım. Çalışmanın büyük kısmını kendim çalıştırıp kontrol ettim.
-
-# Hafta 6 - Stochastic Game of Life
-
-Bu haftaki `06_stochastic_life.ipynb` çalışmasında bazı bölümlerde AI'dan destek aldım.
-
-## AI'dan aldığım yardım
-
-- Takıldığım bazı TODO kısımlarında kod önerileri aldım.
-- Bağımsız ve kümelenmiş ölüm modellerinin kodlarını hazırlarken destek aldım.
-- 480 simülasyonun çalıştırılması ve sürecin hızlandırılması için yardım aldım.
-- Grafiklerin hazırlanması ve kodların kontrol edilmesinde destek aldım.
-
-## Kendi çalışmam
-
-- Rastgele ölüm olasılığının sistem üzerindeki etkilerini inceledim.
-- Bağımsız ve kümelenmiş ölümleri karşılaştırma fikri üzerine çalıştım.
-- L değerlerini 60, 80, 100 ve 200 olarak belirledim.
-- Daha uzun süreli sonuçları görmek için deneyleri 3.000 adıma çıkardım.
-- Yoğunluk, etkinlik ve sönme sürelerini anlamaya ve sonuçları yorumlamaya çalıştım.
-
-## Not
-
-AI'ı özellikle kodlarda takıldığım ve çok sayıda simülasyon çalıştırmam gereken yerlerde kullandım. Deneylerin mantığını ve elde edilen sonuçları anlamaya çalıştım.
+Hafta 6'da modele rastgele ölüm olasılığı ekleniyor. Aynı ölüm olasılığı altında bağımsız ve kümelenmiş ölümler karşılaştırılıyor. Farklı ızgara boyutlarında 3.000 adımlık toplam 480 simülasyon yapılıyor. Özellikle düşük ölüm olasılıklarında kümelenmiş ölümlerin sistemin daha hızlı sönmesine neden olabildiği gözlemleniyor.
