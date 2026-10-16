@@ -1,27 +1,62 @@
+
 # Emergent Complexity in Cellular Automata
 
-Bu depo, Levent Hoca'nın yaz projesi kapsamında hazırlanan, Hafta 1: Temel Hücresel Otomatlar (Elementary CA), Hafta 2: Belirme ve Hücresel Otomatların Sınıflandırılması, Hafta 3: Başlangıç Koşullarına Duyarlılık ve Hafta 4: Conway'in Yaşam Oyunu (Game of Life) ödevlerini içerir. Fork kaynağı: subasilevent/CA.
+Bu depo, Levent Hoca'nın yaz projesi kapsamında hazırlanan 1., 2., 3., 4., 5. ve 6. hafta çalışmalarını içerir.
 
+Fork kaynağı: subasilevent/CA.
+
+## Haftalık Çalışmalar
+
+### Hafta 1: Temel Hücresel Otomatlar
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/01_elementary_CA.ipynb)
+
+### Hafta 2: Belirme ve Hücresel Otomatların Sınıflandırılması
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/02_rule_classification.ipynb)
+
+### Hafta 3: Başlangıç Koşullarına Duyarlılık
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/03_sensitivity.ipynb)
+
+### Hafta 4: Conway'in Yaşam Oyunu
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/04_game_of_life.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1BD0tlG5GKmdqVFFPG-LtCaVV4uzLyCdm?usp=sharing)
 
+### Hafta 5: Rastgele Başlangıç Koşulları
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/05_random_initial_conditions.ipynb)
 
-- `01_elementary_CA.ipynb`: Tek boyutlu hücresel otomatların sıfırdan yazılması (Kural 0, 30, 90, 110), gözlem/karşılaştırma tablosu, küçük araştırma (Kural 90 için N1(t) formülü) ve çıkış sorusu.
-- `02_rule_classification.ipynb`: 256 temel hücresel otomat kuralının sistematik incelenmesi, Wolfram'ın dört nitel sınıfı, yoğunluk ρ(t) ve etkinlik a(t) ölçümleriyle büyük ölçekli davranışın sınıflandırılması.
-- `03_sensitivity.ipynb`: Tek hücrelik başlangıç sapmalarının beş kuralda (0, 4, 30, 90, 110) yayılması; fark alanı, normalize Hamming uzaklığı D(t) ve sapma yarıçapı R(t) ölçümleri, nedensel etki yarıçapıyla karşılaştırma, 10 tohumluk tekrar deneyi ve Kural 90'ın doğrusallığı üzerine isteğe bağlı araştırma.
-- `04_game_of_life.ipynb`: Conway'in Yaşam Oyunu'nun (B3/S23 kuralı) `np.roll` ve boolean maskeler kullanılarak uygulanması, still life, oscillator ve spaceship örneklerinin incelenmesi.
-- `05_random_initial_conditions.ipynb`: Game of Life'ta rastgele başlangıç koşullarının incelenmesi, başlangıç yoğunluğu $p$ değiştirilerek yoğunluk ve etkinlik zaman serilerinin hesaplanması, bağımsız tekrarlar, geç-zaman ortalamaları, örneklem ortalaması ve standart sapma ile tipik davranışın araştırılması.
-- `AI_NOTES.md`: 1., 2., 3., 4. ve 5. haftada AI'dan hangi konularda yardım alındığının kaydı.
+### Hafta 6: Stochastic Game of Life
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/06_stochastic_life.ipynb)
 
-## Ana fikir
+## Dosyalar
 
-Basit yerel etkileşimler (üç hücrelik komşuluk kuralları), belirlenimci olmasına rağmen nitel olarak çok farklı büyük ölçekli davranışlar üretebiliyor. Bu, hücresel otomatlarda belirme olgusunun somut bir örneği.
+- `01_elementary_CA.ipynb`: Tek boyutlu hücresel otomatların sıfırdan yazılması (Kural 0, 30, 90, 110), gözlem ve karşılaştırma tablosu, Kural 90 için N1(t) formülü ve çıkış sorusu.
 
-Hafta 3, buna bir boyut daha ekliyor: Aynı kural altında neredeyse aynı iki başlangıçtan yola çıkıldığında bile kurala bağlı olarak bilgi hızla sönebiliyor, ışık konisi hızında yayılabiliyor ya da ikisi arasında kısmi bir davranış sergileyebiliyor.
+- `02_rule_classification.ipynb`: 256 temel hücresel otomat kuralının incelenmesi, Wolfram'ın dört nitel sınıfı, yoğunluk ρ(t) ve etkinlik a(t) ölçümleriyle davranışların sınıflandırılması.
 
-Hafta 4'te ise iki boyutlu Game of Life ile basit komşuluk kurallarından still life, oscillator ve spaceship gibi kalıcı ve hareketli yapıların nasıl ortaya çıktığı gösteriliyor.
+- `03_sensitivity.ipynb`: Tek hücrelik başlangıç farklılıklarının beş kuralda (0, 4, 30, 90, 110) yayılması, Hamming uzaklığı D(t), sapma yarıçapı R(t), 10 tohumluk tekrar deneyi ve Kural 90'ın doğrusallığı üzerine araştırma.
 
-Hafta 5'te tek tek özel başlangıç durumları yerine rastgele başlangıçlardan oluşan çok sayıda deney inceleniyor. Başlangıç yoğunluğu $p$ değiştirilerek sistemin uzun zamandaki yoğunluğu ve etkinliği ölçülüyor. Aynı $p$ değeri için bağımsız tekrarlar yapılarak ortalama ve standart sapma hesaplanıyor. Böylece tek bir simülasyonun davranışından ziyade sistemin tipik davranışını ve deneyden deneye oluşan değişkenliği incelemek mümkün oluyor.
+- `04_game_of_life.ipynb`: Conway'in Yaşam Oyunu'nun B3/S23 kurallarıyla uygulanması, still life, oscillator ve spaceship örneklerinin incelenmesi.
+
+- `05_random_initial_conditions.ipynb`: Game of Life'ta rastgele başlangıç koşullarının incelenmesi. Başlangıç yoğunluğu p değiştirilerek yoğunluk ve etkinlik grafiklerinin oluşturulması, bağımsız tekrarlar, ortalama ve standart sapma hesaplamaları. Ek olarak M = 100 ve M = 300 için karşılaştırmalar, q parametresinin etkisi ve farklı ızgara boyutlarıyla deneyler.
+
+- `06_stochastic_life.ipynb`: Game of Life modeline rastgele ölüm olasılığının eklenmesi. Bağımsız ve kümelenmiş ölümlerin karşılaştırılması, yoğunluk, etkinlik ve sönme sürelerinin incelenmesi. L = 60, 80, 100 ve 200 değerleriyle, farklı ölüm olasılıklarında 3.000 adıma kadar toplam 480 simülasyon yapılması.
+
+- `AI_NOTES.md`: Çalışmalarda yapay zekâdan hangi konularda yardım alındığının kaydı.
+
+## Ana Fikir
+
+Basit yerel kurallarla çalışan hücresel otomatlar, farklı başlangıç koşullarında oldukça karmaşık davranışlar gösterebiliyor.
+
+Hafta 1 ve 2'de temel hücresel otomat kurallarını ve bu kuralların oluşturduğu farklı davranışları inceledim.
+
+Hafta 3'te başlangıçta yapılan küçük bir değişikliğin zamanla nasıl yayıldığına baktım. Aynı kural altında başlangıç koşullarındaki küçük farklılıkların farklı sonuçlar oluşturabildiğini gördüm.
+
+Hafta 4'te iki boyutlu Game of Life modeline geçtim. Basit komşuluk kurallarından sabit, tekrarlayan ve hareket eden yapıların nasıl oluştuğunu inceledim.
+
+Hafta 5'te rastgele başlangıç koşullarını araştırdım. Farklı başlangıç yoğunluklarıyla deneyler yaparak sistemin yoğunluğunu ve etkinliğini karşılaştırdım. Tekrar sayısını artırarak ortalama ve standart sapma değerlerini inceledim. Ayrıca farklı M, q ve ızgara boyutlarının sonuçlara etkisine baktım.
+
+Hafta 6'da modele rastgele ölüm olasılığı ekledim. Önce bağımsız ölümlerin sistem üzerindeki etkisini inceledim. Daha sonra aynı ölüm olasılığını koruyarak ölümlerin birbirine yakın hücrelerde kümelendiği ikinci bir model üzerinde çalıştım.
+
+İki modeli karşılaştırmak için L değerlerini 60, 80, 100 ve 200 olarak belirledim. Daha uzun süreli davranışları görebilmek için simülasyonları 3.000 adıma çıkardım ve toplam 480 simülasyon çalıştırdım.
+
+Özellikle düşük ölüm olasılıklarında iki modelin farklı davrandığını gördüm. Kümelenmiş ölümler bazı koşullarda sistemin daha hızlı sönmesine neden oldu. Bu sonuç, yalnızca ölüm olasılığının değil, ölümlerin uzaydaki dağılımının da önemli olabileceğini gösteriyor.
+
+Bu farkın neden oluştuğunu ve farklı parametrelerde de devam edip etmediğini araştırmak istiyorum.
