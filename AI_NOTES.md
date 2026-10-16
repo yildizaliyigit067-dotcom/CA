@@ -114,25 +114,25 @@ Bu haftaki `05_random_initial_conditions.ipynb` çalışmasında bazı bölümle
 
 AI'ı sadece takıldığım yerlerde yardımcı bir araç olarak kullandım. Çalışmanın büyük kısmını kendim çalıştırıp kontrol ettim.
 
-Hafta 6 - Stochastic Game of Life
+# Hafta 6 - Stochastic Game of Life
 
-Bu haftaki 06_stochastic_life.ipynb çalışmasında bazı bölümlerde AI’dan destek aldım.
+Bu haftaki `06_stochastic_life.ipynb` çalışmasında bazı bölümlerde AI'dan destek aldım.
 
-AI’dan aldığım yardım
+## AI'dan aldığım yardım
 
-* Takıldığım bazı TODO kısımlarında kod önerileri aldım.
-* Bağımsız ve kümelenmiş ölüm modellerinin kodlarını hazırlarken destek aldım.
-* 480 simülasyonun çalıştırılması ve sürecin hızlandırılması için yardım aldım.
-* Grafiklerin hazırlanması ve kodların kontrol edilmesinde destek aldım.
+- Takıldığım bazı TODO kısımlarında kod önerileri aldım.
+- Bağımsız ve kümelenmiş ölüm modellerinin kodlarını hazırlarken destek aldım.
+- 480 simülasyonun çalıştırılması ve sürecin hızlandırılması için yardım aldım.
+- Grafiklerin hazırlanması ve kodların kontrol edilmesinde destek aldım.
 
-Kendi çalışmam
+## Kendi çalışmam
 
-* Rastgele ölüm olasılığının sistem üzerindeki etkilerini inceledim.
-* Bağımsız ve kümelenmiş ölümleri karşılaştırma fikri üzerine çalıştım.
-* L değerlerini 60, 80, 100 ve 200 olarak belirledim.
-* Daha uzun süreli sonuçları görmek için deneyleri 3.000 adıma çıkardım.
-* Yoğunluk, etkinlik ve sönme sürelerini anlamaya ve sonuçları yorumlamaya çalıştım.
+- Rastgele ölüm olasılığının sistem üzerindeki etkilerini inceledim.
+- Bağımsız ve kümelenmiş ölümleri karşılaştırma fikri üzerine çalıştım.
+- L değerlerini 60, 80, 100 ve 200 olarak belirledim.
+- Daha uzun süreli sonuçları görmek için deneyleri 3.000 adıma çıkardım.
+- Yoğunluk, etkinlik ve sönme sürelerini anlamaya ve sonuçları yorumlamaya çalıştım.
 
-Not
+## Not
 
-AI’ı özellikle kodlarda takıldığım ve çok sayıda simülasyon çalıştırmam gereken yerlerde kullandım. Deneylerin mantığını ve elde edilen sonuçları anlamaya çalıştım.
+AI'ı özellikle kodlarda takıldığım ve çok sayıda simülasyon çalıştırmam gereken yerlerde kullandım. Deneylerin mantığını ve elde edilen sonuçları anlamaya çalıştım.
