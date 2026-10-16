@@ -15,20 +15,22 @@ Bu depo, Levent Hoca'nın yaz projesi kapsamında hazırlanan, Hafta 1: Temel H�
 - `02_rule_classification.ipynb`: 256 temel hücresel otomat kuralının sistematik incelenmesi, Wolfram'ın dört nitel sınıfı, yoğunluk ρ(t) ve etkinlik a(t) ölçümleriyle büyük ölçekli davranışın sınıflandırılması.
 - `03_sensitivity.ipynb`: Tek hücrelik başlangıç sapmalarının beş kuralda (0, 4, 30, 90, 110) yayılması, fark alanı, normalize Hamming uzaklığı D(t) ve sapma yarıçapı R(t) ölçümleri, nedensel etki yarıçapıyla karşılaştırma, 10 tohumluk tekrar deneyi ve Kural 90'ın doğrusallığı üzerine isteğe bağlı araştırma.
 - `04_game_of_life.ipynb`: Conway'in Yaşam Oyunu'nun (B3/S23 kuralı) `np.roll` ve boolean maskeler kullanılarak uygulanması, still life, oscillator ve spaceship örneklerinin incelenmesi.
-- `05_random_initial_conditions.ipynb`: Game of Life'ta rastgele başlangıç koşullarının incelenmesi, başlangıç yoğunluğu $p$ değiştirilerek yoğunluk ve etkinlik zaman serilerinin hesaplanması, bağımsız tekrarlar, geç-zaman ortalamaları, örneklem ortalaması ve standart sapma ile tipik davranışın araştırılması. M = 100 ve M = 300 için karşılaştırmalar, q parametresinin etkisi ve farklı ızgara boyutlarıyla ek deneyler.
-- `06_stochastic_life.ipynb`: Game of Life'a rastgele ölüm olasılığının eklenmesi, yoğunluk, etkinlik ve sönme sürelerinin incelenmesi. Bağımsız ve kümelenmiş ölümlerin karşılaştırılması, L = 60, 80, 100 ve 200 için farklı ölüm olasılıklarında 3.000 adımlık deneyler ve toplam 480 simülasyon.
-- `AI_NOTES.md`: 1., 2., 3., 4., 5. ve 6. haftada AI'dan hangi konularda yardım alındığının kaydı.
+- `05_random_initial_conditions.ipynb`: Game of Life'ta rastgele başlangıç koşullarının incelenmesi, başlangıç yoğunluğu $p$ değiştirilerek yoğunluk ve etkinlik zaman serilerinin hesaplanması, bağımsız tekrarlar, geç-zaman ortalamaları ve standart sapma ile tipik davranışın araştırılması. M = 100 ve 300 karşılaştırmaları, q parametresi ve farklı ızgara boyutlarıyla ek deneyler.
+- `06_stochastic_life.ipynb`: Game of Life'a rastgele ölüm olasılığının eklenmesi, yoğunluk, etkinlik ve sönme sürelerinin incelenmesi. Bağımsız ve kümelenmiş ölüm modellerinin karşılaştırılması, L = 60, 80, 100 ve 200 için 3.000 adımlık toplam 480 simülasyon.
+- `AI_NOTES.md`: 1., 2., 3., 4., 5. ve 6. haftalarda AI'dan hangi konularda yardım alındığının kaydı.
 
 ## Ana fikir
 
-Basit yerel etkileşimler (üç hücrelik komşuluk kuralları), belirlenimci olmasına rağmen nitel olarak çok farklı büyük ölçekli davranışlar üretebiliyor. Bu, hücresel otomatlarda belirme olgusunun somut bir örneği.
+Basit yerel etkileşimler, belirlenimci olmasına rağmen nitel olarak çok farklı büyük ölçekli davranışlar üretebiliyor. Bu, hücresel otomatlarda belirme olgusunun somut bir örneği.
 
-Hafta 3, buna bir boyut daha ekliyor: Aynı kural altında neredeyse aynı iki başlangıçtan yola çıkıldığında bile kurala bağlı olarak bilgi hızla sönebiliyor, ışık konisi hızında yayılabiliyor ya da ikisi arasında kısmi bir davranış sergileyebiliyor.
+Hafta 1'de temel hücresel otomat kuralları uygulanıyor. Kural 0, 30, 90 ve 110'un farklı başlangıç koşullarında oluşturduğu desenler inceleniyor.
 
-Hafta 4'te ise iki boyutlu Game of Life ile basit komşuluk kurallarından still life, oscillator ve spaceship gibi kalıcı ve hareketli yapıların nasıl ortaya çıktığı gösteriliyor.
+Hafta 2'de 256 temel kural, Wolfram'ın dört sınıfına göre değerlendiriliyor. Yoğunluk ve etkinlik ölçümleriyle kuralların uzun vadeli davranışları karşılaştırılıyor.
 
-Hafta 5'te tek tek özel başlangıç durumları yerine rastgele başlangıçlardan oluşan çok sayıda deney inceleniyor. Başlangıç yoğunluğu $p$ değiştirilerek sistemin uzun zamandaki yoğunluğu ve etkinliği ölçülüyor. Aynı $p$ değeri için bağımsız tekrarlar yapılarak ortalama ve standart sapma hesaplanıyor. Böylece tek bir simülasyonun davranışından ziyade sistemin tipik davranışını ve deneyden deneye oluşan değişkenliği incelemek mümkün oluyor. Ek olarak M = 100 ve M = 300 değerleri karşılaştırılıyor, q parametresinin sonuçlara etkisi ve farklı ızgara boyutları inceleniyor.
+Hafta 3'te başlangıç koşullarındaki tek hücrelik değişikliklerin zamanla nasıl yayıldığı inceleniyor. Hamming uzaklığı ve sapma yarıçapıyla farklı kuralların başlangıç koşullarına duyarlılığı ölçülüyor.
 
-Hafta 6'da Game of Life modeline rastgele ölüm olasılığı ekleniyor. Ölüm olasılığı μ değiştirilerek yoğunluk, etkinlik ve sistemin tamamen sönme süresi inceleniyor. Bağımsız tekrarlarla rastgeleliğin sonuçlar üzerindeki etkisi araştırılıyor.
+Hafta 4'te iki boyutlu Game of Life modeline geçiliyor. Basit komşuluk kurallarından still life, oscillator ve spaceship gibi yapıların nasıl ortaya çıktığı gösteriliyor.
 
-Buna ek olarak, aynı ölüm olasılığı korunurken ölümlerin birbirine yakın hücrelerde kümelenmesinin sistemi nasıl etkilediği karşılaştırılıyor. L = 60, 80, 100 ve 200 değerleri için üç farklı ölüm olasılığı kullanılarak 3.000 adımlık toplam 480 simülasyon yapılıyor. Özellikle düşük ölüm olasılığında bağımsız ve kümelenmiş ölüm modelleri arasında belirgin farklar gözlemleniyor. Kümelenmiş ölüm modelinin incelenen koşullarda daha hızlı sönebildiği görülüyor. Bu sonuçların farklı korelasyon uzunluklarında nasıl değiştiği ise sonraki araştırmalar için bir soru olarak kalıyor.
+Hafta 5'te rastgele başlangıç koşullarıyla çok sayıda deney yapılıyor. Farklı başlangıç yoğunluklarının sistemin davranışına etkisi, ortalama ve standart sapma kullanılarak inceleniyor. Ayrıca M, q ve ızgara boyutlarının sonuçlara etkisi karşılaştırılıyor.
+
+Hafta 6'da modele rastgele ölüm olasılığı ekleniyor. Aynı ölüm olasılığı altında bağımsız ve kümelenmiş ölümler karşılaştırılıyor. Farklı ızgara boyutlarında 3.000 adımlık toplam 480 simülasyon yapılıyor. Özellikle düşük ölüm olasılıklarında kümelenmiş ölümlerin sistemin daha hızlı sönmesine neden olabildiği gözlemleniyor.
