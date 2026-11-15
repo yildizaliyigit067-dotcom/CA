@@ -1,49 +1,56 @@
 
-# Record of AI Assistance
+# Research Development and AI Assistance
 
-This document records the use of AI tools during the development and technical review of the *Emergent Complexity in Cellular Automata* research project.
+## Project Overview
 
-## Weeks 1–3: Elementary Cellular Automata, Rule Classification and Sensitivity
+This project investigates emergent complexity in cellular automata through six computational notebooks.
 
-AI tools, including Claude and ChatGPT, were used for technical explanations, code suggestions, debugging and result verification.
+The research was conducted under academic supervision, with AI tools supporting technical development, computational analysis and documentation.
 
-Topics included bitwise operations, Rule 90 and Rule 110, Wolfram's classification, density and activity measurements, Hamming distance and sensitivity to initial conditions.
+## Weeks 1–3: Elementary Cellular Automata
 
-The student studied the underlying concepts, reviewed the implementations and examined the numerical results and visualisations.
+The student investigated elementary cellular automata, rule classification and sensitivity to initial conditions.
 
-## Weeks 4–5: Game of Life and Random Initial Conditions
+Claude and ChatGPT supported technical explanations, selected code implementations, debugging and numerical verification.
 
-AI assistance included suggestions for selected code sections, debugging, experiment preparation and explanations of results.
+The student reviewed the implementations, examined the results and studied the underlying mathematical concepts.
 
-The student executed the notebooks in Google Colab, examined the outputs and investigated the B3/S23 rules, density, activity, variability and the influence of initial conditions.
+## Weeks 4–5: Game of Life
+
+The student investigated Conway's Game of Life, random initial conditions, population density, activity and statistical variability.
+
+AI tools assisted with selected code sections, experiment preparation and result verification.
+
+The student executed the original notebooks in Google Colab and examined the resulting numerical data and visualisations.
 
 ## Week 6: Stochastic Game of Life
 
-AI assistance included code suggestions, implementation support for independent and spatially clustered mortality, computational optimisation and figure preparation.
+The research was extended to independent and spatially clustered mortality.
 
-The student selected lattice sizes of L = 60, 80, 100 and 200, extended experiments to 3,000 time steps and investigated mortality, population density, activity and extinction behaviour.
+The student selected lattice sizes, investigated mortality parameters and extended simulations to 3,000 steps.
 
-AI also assisted with executing the original 480 simulations.
+AI tools supported implementation, computational optimisation and execution of 480 simulations.
 
-## Technical Review — November 2026
+## November 2026: Technical Review
 
-Claude Opus 5.5 assisted with the technical review and repository preparation.
+Claude Opus 5.5 assisted with repository preparation and computational verification.
 
-Its contributions included:
+The work included:
 
-- Translating notebook documentation and labels into English.
-- Correcting identified documentation issues.
-- Re-executing and validating the six notebooks.
-- Developing and executing an additional simulation and validation framework in `analysis/`.
-- Running approximately 11,500 additional simulations and generating numerical results in `results/`.
-- Preparing repository documentation and a preliminary technical report for supervisor review.
+- English translation of notebook documentation.
+- Re-execution and validation of six notebooks.
+- Correction of identified technical issues.
+- Development of an independent simulation framework.
+- Execution of approximately 11,500 additional simulations.
+- Generation of datasets and scientific figures.
+- Preparation of technical documentation and a preliminary scientific report.
 
-The original scientific model, experimental parameters and stored results were preserved. No material was submitted or published.
+The original scientific model and stored results were preserved.
 
-## Academic Integrity and Publication
+## Research Integrity
 
-AI assistance is documented to distinguish technical support from the student's research activities.
+AI tools were used for technical assistance, computational development, validation and preliminary documentation.
 
-The report in `report/` was AI-drafted for preliminary supervisor review. Any future journal manuscript will be prepared in accordance with the target journal's AI-use and authorship policies.
+The preliminary report was AI-drafted for supervisor review. Any future journal manuscript will comply with the target journal's AI-use and authorship policies.
 
-Further technical details are available in `VALIDATION_REPORT.md` and `CHANGELOG.md`.
+Detailed verification records are available in `VALIDATION_REPORT.md`.
