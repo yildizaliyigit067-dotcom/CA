@@ -112,7 +112,7 @@ def fig_snapshots():
         ax = axs[2, c]
         ax.imshow(m, cmap="Greys", vmin=0, vmax=1, interpolation="nearest")
         ax.set_xticks([]); ax.set_yticks([]); ax.grid(False)
-        ax.set_title(title.split()[0] + " mask", fontsize=8)
+        ax.set_title(title.split()[0], fontsize=8)
     for c in range(2, len(times) + 1):
         axs[2, c].axis("off")
     axs[2, 2].text(0.0, 0.5, "Bottom left: one mortality mask of each model at\n"

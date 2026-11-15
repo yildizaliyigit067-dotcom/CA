@@ -4,3 +4,6 @@ work/
 outputs/
 *.pyc
 .pytest_cache/
+report/*.aux
+report/*.log
+report/*.out
