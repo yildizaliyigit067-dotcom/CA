@@ -15,14 +15,14 @@ The repository was originally forked from `subasilevent/CA`.
 
 ## Scientific background (short)
 
-An elementary cellular automaton updates a ring of 0/1 cells synchronously using the states of each cell and its two nearest neighbours. There are 256 such rules, which Wolfram grouped into four qualitative classes. Conway's Game of Life is a two-dimensional automaton with the rule B3/S23 (birth with exactly 3 live neighbours, survival with 2 or 3). From random initial states it typically settles into a sparse "ash" of still lifes and oscillators. The stochastic model studied here applies the deterministic Life step and then removes each live cell with probability μ. The empty grid is absorbing, so on a finite grid every run with μ > 0 eventually dies out. The question is how quickly, and how this depends on the way deaths are distributed in space.
+An elementary cellular automaton updates a ring of 0/1 cells synchronously using the states of each cell and its two nearest neighbours. There are 256 such rules, which Wolfram grouped into four qualitative classes. Conway's Game of Life is a two-dimensional automaton with the rule B3/S23 (birth with exactly 3 live neighbours, survival with 2 or 3). From random initial states it typically settles into a sparse "ash" of still lifes and oscillators. The stochastic model studied here applies the deterministic Life step and then removes each live cell with probability $\mu$. The empty grid is absorbing, so on a finite grid every run with $\mu > 0$ eventually dies out. The question is how quickly, and how this depends on the way deaths are distributed in space.
 
 ## Computational methodology
 
 * Periodic (toroidal) boundaries in all simulations.
-* Random initial grids with each cell alive independently with probability p (ECA) or p0 (Life).
-* Observables: density ρ(t), activity a(t) (fraction of cells that change between steps), first extinction time τ, Hamming distance D(t) and radius R(t) for perturbations.
-* Stochastic model: G(t+1) = D_μ(F_Life(G(t))). Independent mortality marks every site i.i.d. with probability μ. Clustered mortality thresholds a Gaussian-smoothed random field (width σ) that has been mapped to Uniform(0, 1), so every site is still marked with probability exactly μ but marks are spatially correlated.
+* Random initial grids with each cell alive independently with probability $p$ (ECA) or $p_0$ (Life).
+* Observables: density $\rho(t)$, activity $a(t)$ (fraction of cells that change between steps), first extinction time $\tau$, Hamming distance $D(t)$ and radius $R(t)$ for perturbations.
+* Stochastic model: $G_{t+1} = D_{\mu}(F_{\mathrm{Life}}(G_t))$. Independent mortality marks every site i.i.d. with probability $\mu$. Clustered mortality thresholds a Gaussian-smoothed random field (width $\sigma$) that has been mapped to Uniform(0, 1), so every site is still marked with probability exactly $\mu$ but marks are spatially correlated.
 * All experiments use explicit seeds (`numpy.random.default_rng` or `SeedSequence`), repeated independent realisations, and report mean, standard deviation and, where relevant, standard errors and 95% confidence intervals.
 
 ## Repository structure
@@ -86,20 +86,20 @@ Notebooks can also be opened in Google Colab:
 
 ## Main findings (verified by re-execution)
 
-These statements hold for the parameters stated (p0 = 0.35, periodic L × L grid, observation up to 3,000 updates). They are not claims about infinite systems or infinite times.
+These statements hold for the parameters stated ($p_0 = 0.35$, periodic $L \times L$ grid, observation up to 3,000 updates). They are not claims about infinite systems or infinite times.
 
-1. **Same probability, different fate.** At μ = 0.005 and L = 60, no run with independent mortality died out within 3,000 steps (0/40), whereas every run with clustered mortality (σ = 2) did (40/40, median extinction time 841 steps). The same contrast holds for every lattice size tested from L = 60 to L = 200, and for initial densities p0 = 0.20, 0.35 and 0.50.
-2. **The models are matched in mortality intensity.** In both models the realised fraction of live cells removed per step equals μ within about 3%. The difference is therefore not caused by a stronger average mortality.
-3. **Spatial correlation, not only fluctuations, is responsible at low μ.** A control model with the same step-to-step fluctuations in the number of deaths as the clustered model, but without spatial correlation, behaves like the independent model at μ ≤ 0.005 (0/40 extinct). For the widest kernel tested (σ = 4) and μ ≥ 0.01, fluctuations alone do account for much of the extra extinction.
-4. **The mechanism: self-repair of blocks.** At μ > 0 the surviving populations are almost entirely blocks (93% of objects). A block repairs the loss of one cell in a single step and dies only if two or more cells are removed in the same step. The probability of that event, measured from the death masks alone, predicts the simulated block lifetimes closely (independent μ = 0.005: 64% predicted versus 63% simulated survival to t = 3000. Clustered: median 121 predicted versus 124 simulated). Populations made only of blocks reproduce the contrast between the models.
-5. **Extinction times grow with system size.** Median extinction times increase from L = 40 to L = 200 in both models. No scaling law is claimed.
-6. **Earlier weeks.** The Rule 90 formula N1(t) = 2^popcount(t), the light-cone bound R(t) ≤ t, the exact linearity test for Rule 90, the glider velocity of 1/4 cell per step and the non-monotonic dependence of the late-time Life density on the initial density all reproduce exactly.
+1. **Same probability, different fate.** At $\mu = 0.005$ and $L = 60$, no run with independent mortality died out within 3,000 steps (0/40), whereas every run with clustered mortality ($\sigma = 2$) did (40/40, median extinction time 841 steps). The same contrast holds for every lattice size tested from $L = 60$ to $L = 200$, and for initial densities $p_0 = 0.20$, 0.35 and 0.50.
+2. **The models are matched in mortality intensity.** In both models the realised fraction of live cells removed per step equals $\mu$ within about 3%. The difference is therefore not caused by a stronger average mortality.
+3. **Spatial correlation, not only fluctuations, is responsible at low $\mu$.** A control model with the same step-to-step fluctuations in the number of deaths as the clustered model, but without spatial correlation, behaves like the independent model at $\mu \le 0.005$ (0/40 extinct). For the widest kernel tested ($\sigma = 4$) and $\mu \ge 0.01$, fluctuations alone do account for much of the extra extinction.
+4. **The mechanism: self-repair of blocks.** At $\mu > 0$ the surviving populations are almost entirely blocks (93% of objects). A block repairs the loss of one cell in a single step and dies only if two or more cells are removed in the same step. The probability of that event, measured from the death masks alone, predicts the simulated block lifetimes closely (independent $\mu = 0.005$: 64% predicted versus 63% simulated survival to t = 3000. Clustered: median 121 predicted versus 124 simulated). Populations made only of blocks reproduce the contrast between the models.
+5. **Extinction times grow with system size.** Median extinction times increase from $L = 40$ to $L = 200$ in both models. No scaling law is claimed.
+6. **Earlier weeks.** The Rule 90 formula $N_1(t) = 2^{\mathrm{popcount}(t)}$, the light-cone bound $R(t) \le t$, the exact linearity test for Rule 90, the glider velocity of 1/4 cell per step and the non-monotonic dependence of the late-time Life density on the initial density all reproduce exactly.
 
 Details, uncertainties and corrections are in the technical report in `report/` and in `CHANGELOG.md`.
 
 ## Limitations
 
-* Finite grids (L ≤ 200) and finite observation times (T ≤ 3,000). Survival up to T is not survival forever.
+* Finite grids ($L \le 200$) and finite observation times ($T \le 3000$). Survival up to $T$ is not survival forever.
 * Forty realisations per condition in most experiments. Extinction fractions carry 95% confidence intervals of up to about ±0.15.
 * One functional form of spatial correlation (Gaussian kernel) and three widths.
 * Long-time behaviour is classified with explicit but operational criteria (see the technical report, Section 5).
@@ -109,7 +109,7 @@ Details, uncertainties and corrections are in the technical report in `report/` 
 
 * Weekly notebooks 1 to 6: complete, translated, re-executed and verified.
 * Technical report for supervisor review: prepared (`report/`). Not yet reviewed.
-* Week 7 investigation (dependence on the filter width σ): a preliminary version appears in the report as Experiment F.
+* Week 7 investigation (dependence on the filter width $\sigma$): a preliminary version appears in the report as Experiment F.
 
 ## Acknowledgments
 
