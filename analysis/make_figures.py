@@ -460,3 +460,31 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def fig_mechanism_prediction():
+    """Simulated block survival (solid) against the prediction (1-q)^t (dashed)."""
+    o = pd.read_csv(RES / "objects_runs.csv")
+    q = pd.read_csv(RES / "mechanism_test.csv")
+    fig, axs = plt.subplots(1, 2, figsize=(7.0, 2.6), sharey=True)
+    for ax, mu in zip(axs, (0.005, 0.02)):
+        for model in ("independent", "global_fluct", "clustered"):
+            g = o[(o.object == "block") & np.isclose(o.mu, mu) & (o.model == model)]
+            tt, S = survival_curve(g.tau)
+            ax.plot(tt, S, color=COL[model], label=f"{NAME[model]}, simulated")
+            qq = float(q[(q.model == model) & np.isclose(q.mu, mu)].q_two_or_more_hits.iloc[0])
+            ax.plot(tt, (1 - qq) ** tt, color=COL[model], ls="--", lw=1.2)
+        ax.set_xscale("symlog", linthresh=10)
+        ax.set_xticks([0, 10, 100, 1000], ["0", "10", "100", "1000"])
+        ax.set_title(f"Isolated block, μ = {mu}")
+        ax.set_xlabel("Time step t")
+    axs[0].set_ylabel("Fraction of blocks alive")
+    axs[0].plot([], [], color=MUTED, ls="--", label="Prediction (1 − q)ᵗ")
+    axs[0].legend(fontsize=6.3, loc="lower left")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig9_mechanism_prediction.png")
+    plt.close(fig)
+
+
+if __name__ == "__main__" and (RES / "mechanism_test.csv").exists():
+    fig_mechanism_prediction()

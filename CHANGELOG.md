@@ -30,6 +30,10 @@ All changes below were made on the branch `review/english-and-verification`, sta
 - `report/`: LaTeX source and PDF of the technical report for supervisor review.
 - `VALIDATION_REPORT.md`, `CHANGELOG.md`, `requirements.txt`.
 
+### Added later the same day
+- `analysis/census.py`: census of surviving objects (blocks are 93% of objects at μ = 0.005).
+- `analysis/mechanism_test.py` and Figure 9: quantitative test of the block self-repair mechanism and block-only populations.
+
 ### Not changed
 - No model definition, parameter value, seed or stored result in the notebooks was changed.
 - The optional glider-perturbation investigation in notebook 04 (Section 10) remains empty, as in the original.
