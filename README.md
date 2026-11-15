@@ -1,82 +1,75 @@
 # Emergent Complexity in Cellular Automata
 
-A computational study, carried out by a high-school student, of how simple local update rules produce complex large-scale behaviour. The project ends with a stochastic version of Conway's Game of Life in which live cells die at random after every update. The main question is whether the **spatial arrangement** of these deaths, and not only their probability, changes the long-time fate of the system.
+This is a high-school research project about cellular automata: simple grids of cells that follow simple rules but can still produce complex patterns.
 
-> **Status:** research in progress. This repository contains weekly notebooks prepared in a summer project supervised by Prof. Levent Subaşı (Istanbul Technical University) and an accompanying technical report prepared for his review. The work has **not** been peer reviewed or published. The notebooks were originally written in Turkish and were translated into English in November 2026.
+The project was done as a summer project supervised by Prof. Levent Subaşı (Istanbul Technical University). It is still in progress and has **not** been peer reviewed or published. The notebooks were first written in Turkish and translated into English in November 2026. The repository is a fork of `subasilevent/CA`.
 
-The repository was originally forked from `subasilevent/CA`.
+## The main question
 
-## Research objectives
+In Conway's Game of Life, each cell lives or dies depending on its eight neighbours. In this project, an extra rule is added: after every step, each live cell dies at random with probability $\mu$.
 
-1. Implement elementary cellular automata (ECA) and Conway's Game of Life from first principles and verify them against known patterns.
-2. Describe large-scale behaviour with measurable observables (density, activity, Hamming distance, perturbation radius) instead of visual impressions alone.
-3. Use ensembles of random initial conditions to distinguish typical behaviour from individual trajectories.
-4. Add random mortality to the Game of Life and compare **independent** deaths with **spatially clustered** deaths that have the same per-cell probability.
+The question is:
 
-## Scientific background (short)
+> If every cell has the same chance of dying, does it matter **where** the deaths happen?
 
-An elementary cellular automaton updates a ring of 0/1 cells synchronously using the states of each cell and its two nearest neighbours. There are 256 such rules, which Wolfram grouped into four qualitative classes. Conway's Game of Life is a two-dimensional automaton with the rule B3/S23 (birth with exactly 3 live neighbours, survival with 2 or 3). From random initial states it typically settles into a sparse "ash" of still lifes and oscillators. The stochastic model studied here applies the deterministic Life step and then removes each live cell with probability $\mu$. The empty grid is absorbing, so on a finite grid every run with $\mu > 0$ eventually dies out. The question is how quickly, and how this depends on the way deaths are distributed in space.
+Two cases are compared:
 
-## Computational methodology
+* **Independent deaths:** every cell dies on its own, with probability $\mu$.
+* **Clustered deaths:** cells close to each other tend to die together. Each cell still dies with the same probability $\mu$.
 
-* Periodic (toroidal) boundaries in all simulations.
-* Random initial grids with each cell alive independently with probability $p$ (ECA) or $p_0$ (Life).
-* Observables: density $\rho(t)$, activity $a(t)$ (fraction of cells that change between steps), first extinction time $\tau$, Hamming distance $D(t)$ and radius $R(t)$ for perturbations.
-* Stochastic model: $G_{t+1} = D_{\mu}(F_{\mathrm{Life}}(G_t))$. Independent mortality marks every site i.i.d. with probability $\mu$. Clustered mortality thresholds a Gaussian-smoothed random field (width $\sigma$) that has been mapped to Uniform(0, 1), so every site is still marked with probability exactly $\mu$ but marks are spatially correlated.
-* All experiments use explicit seeds (`numpy.random.default_rng` or `SeedSequence`), repeated independent realisations, and report mean, standard deviation and, where relevant, standard errors and 95% confidence intervals.
+## What was found
 
-## Repository structure
+All results below are for a $60 \times 60$ grid (unless stated otherwise), starting with 35% of cells alive, and watched for up to 3000 steps.
 
-```
-01_elementary_CA.ipynb              Week 1: ECA engine, rules 0, 30, 90, 110, N1(t) = 2^popcount(t) for Rule 90
-02_rule_classification.ipynb        Week 2: all 256 rules, Wolfram classes, density and activity
-03_sensitivity.ipynb                Week 3: perturbation spreading, Hamming distance, light cone, Rule 90 linearity
-04_game_of_life.ipynb               Week 4: B3/S23 engine, still lifes, oscillators, glider velocity
-05_random_initial_conditions.ipynb  Week 5: ensembles over the initial density p, birth probability q, grid shape
-06_stochastic_life.ipynb            Week 6: random mortality, independent versus clustered deaths, L up to 200, T = 3000
-analysis/                           Review code: engine, experiments A to F, figures, tests, cross-checks
-results/                            CSV output of all experiments, summary tables, environment record
-figures/                            Figures used in the technical report
-report/                             LaTeX source and PDF of the technical report
-AI_NOTES.md                         Record of AI assistance
-VALIDATION_REPORT.md                Summary of the technical validation
-CHANGELOG.md                        Changes made on the review branch
-requirements.txt                    Python dependencies
-```
+1. **Same chance of death, very different result.** At $\mu = 0.005$, none of 40 runs with independent deaths died out. With clustered deaths, all 40 runs died out (typically after about 840 steps). This was also true for grid sizes from 60 to 200 and for different starting densities.
+2. **The death rate really is the same.** In both cases, the fraction of live cells that die each step matches $\mu$ (within about 3%). So the difference is not because one model kills more cells.
+3. **It is the location of deaths that matters.** A test model that has the same ups and downs in the number of deaths, but with no clustering, behaves like the independent model at low $\mu$.
+4. **Why it happens: blocks repair themselves.** After a while, almost everything left alive is a 2×2 "block" (93% of objects). If a block loses one cell, the Game of Life rules rebuild it in the next step. It only dies if two or more of its cells die at the same time. Clustered deaths often hit several cells of a block at once, so blocks cannot repair themselves. A simple formula based on this idea predicts the block lifetimes in the simulations very closely.
+5. **Bigger grids take longer to die out**, in both models.
 
-The notebooks are numbered in the order in which they should be read. Each notebook runs on its own from top to bottom.
+The early weeks (1 to 5) also reproduce known results, for example the Rule 90 formula $N_1(t) = 2^{\mathrm{popcount}(t)}$ and the glider speed of 1/4 cell per step.
 
-## Installation
+More details are in the report: [`report/report.pdf`](report/report.pdf).
+
+## Files
+
+| File or folder | What it contains |
+|---|---|
+| `01_elementary_CA.ipynb` | Week 1: one-dimensional cellular automata (rules 0, 30, 90, 110) |
+| `02_rule_classification.ipynb` | Week 2: all 256 rules and Wolfram's four classes |
+| `03_sensitivity.ipynb` | Week 3: how a one-cell change spreads |
+| `04_game_of_life.ipynb` | Week 4: Game of Life, still lifes, oscillators and gliders |
+| `05_random_initial_conditions.ipynb` | Week 5: random starting grids and averages over many runs |
+| `06_stochastic_life.ipynb` | Week 6: random deaths, independent versus clustered |
+| `analysis/` | Code for the extra experiments, figures and tests |
+| `results/` | Data from all experiments (CSV files) |
+| `figures/` | Figures used in the report |
+| `report/` | The report (PDF and LaTeX source) |
+| `AI_NOTES.md` | How AI tools were used in the project |
+| `VALIDATION_REPORT.md` | Summary of how the results were checked |
+| `CHANGELOG.md` | List of changes made during the November 2026 review |
+
+## How to run it
 
 ```bash
 git clone https://github.com/yildizaliyigit067-dotcom/CA.git
 cd CA
-python -m venv .venv && source .venv/bin/activate     # optional
 pip install -r requirements.txt
 ```
 
-Python 3.10 or newer is expected. The exact versions used for the stored outputs are listed in `results/environment.txt`. `numba` is optional. Without it, notebook 06 Section 10 and the `analysis/` code run more slowly.
+Then open any notebook in Jupyter or Google Colab and run it from top to bottom. Each notebook works on its own.
 
-## Reproducing the results
+To repeat the extra experiments and make the figures (about 25 minutes):
 
 ```bash
-# notebooks (01 to 05 take under a minute each, 06 takes about 6 minutes on 2 cores)
-jupyter nbconvert --to notebook --execute --inplace 06_stochastic_life.ipynb
-
-# tests of the review engine against the notebook implementation
 python -m pytest analysis/tests -q
-
-# experiments A to F (about 20 minutes on 2 cores), then figures and tables
 python analysis/experiments.py all
 python analysis/make_figures.py
-python analysis/nb05_table.py
-python analysis/crosscheck_nb06.py
 ```
 
-Every row of `results/*_runs.csv` records the seed keys of its initial grid and of its random dynamics, so any single run can be regenerated.
+All random numbers use fixed seeds, so the results come out the same every time.
 
-Notebooks can also be opened in Google Colab:
-
+Open in Colab:
 [01](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/01_elementary_CA.ipynb) ·
 [02](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/02_rule_classification.ipynb) ·
 [03](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/03_sensitivity.ipynb) ·
@@ -84,33 +77,18 @@ Notebooks can also be opened in Google Colab:
 [05](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/05_random_initial_conditions.ipynb) ·
 [06](https://colab.research.google.com/github/yildizaliyigit067-dotcom/CA/blob/main/06_stochastic_life.ipynb)
 
-## Main findings (verified by re-execution)
-
-These statements hold for the parameters stated ($p_0 = 0.35$, periodic $L \times L$ grid, observation up to 3,000 updates). They are not claims about infinite systems or infinite times.
-
-1. **Same probability, different fate.** At $\mu = 0.005$ and $L = 60$, no run with independent mortality died out within 3,000 steps (0/40), whereas every run with clustered mortality ($\sigma = 2$) did (40/40, median extinction time 841 steps). The same contrast holds for every lattice size tested from $L = 60$ to $L = 200$, and for initial densities $p_0 = 0.20$, 0.35 and 0.50.
-2. **The models are matched in mortality intensity.** In both models the realised fraction of live cells removed per step equals $\mu$ within about 3%. The difference is therefore not caused by a stronger average mortality.
-3. **Spatial correlation, not only fluctuations, is responsible at low $\mu$.** A control model with the same step-to-step fluctuations in the number of deaths as the clustered model, but without spatial correlation, behaves like the independent model at $\mu \le 0.005$ (0/40 extinct). For the widest kernel tested ($\sigma = 4$) and $\mu \ge 0.01$, fluctuations alone do account for much of the extra extinction.
-4. **The mechanism: self-repair of blocks.** At $\mu > 0$ the surviving populations are almost entirely blocks (93% of objects). A block repairs the loss of one cell in a single step and dies only if two or more cells are removed in the same step. The probability of that event, measured from the death masks alone, predicts the simulated block lifetimes closely (independent $\mu = 0.005$: 64% predicted versus 63% simulated survival to $t = 3000$. Clustered: median 121 predicted versus 124 simulated). Populations made only of blocks reproduce the contrast between the models.
-5. **Extinction times grow with system size.** Median extinction times increase from $L = 40$ to $L = 200$ in both models. No scaling law is claimed.
-6. **Earlier weeks.** The Rule 90 formula $N_1(t) = 2^{\mathrm{popcount}(t)}$, the light-cone bound $R(t) \le t$, the exact linearity test for Rule 90, the glider velocity of 1/4 cell per step and the non-monotonic dependence of the late-time Life density on the initial density all reproduce exactly.
-
-Details, uncertainties and corrections are in the technical report in `report/` and in `CHANGELOG.md`.
-
 ## Limitations
 
-* Finite grids ($L \le 200$) and finite observation times ($T \le 3000$). Survival up to $T$ is not survival forever.
-* Forty realisations per condition in most experiments. Extinction fractions carry 95% confidence intervals of up to about ±0.15.
-* One functional form of spatial correlation (Gaussian kernel) and three widths.
-* Long-time behaviour is classified with explicit but operational criteria (see the technical report, Section 5).
-* The literature comparison is preliminary. No Game of Life study with spatially correlated mortality was found, but the general effect (clustered disturbances raise extinction risk) is known from spatial ecology, for example Kallimanis et al., *Conservation Biology* 19, 534 (2005). See the Discussion of the report.
+* The grids are finite (at most $200 \times 200$) and the runs are finite (at most 3000 steps). A run that survives 3000 steps would still die out eventually.
+* Most results use 40 runs per setting, so the percentages have some uncertainty.
+* Only one kind of clustering (a Gaussian blur) was tested.
+* The search for earlier studies was short. The general idea that clustered disasters are more dangerous is already known in ecology, so the new part here is the Game of Life case and the block-repair explanation.
 
-## Research status
+## Status
 
-* Weekly notebooks 1 to 6: complete, translated, re-executed and verified.
-* Technical report for supervisor review: prepared (`report/`). Not yet reviewed.
-* Week 7 investigation (dependence on the filter width $\sigma$): a preliminary version appears in the report as Experiment F.
+* Weeks 1 to 6: finished, translated and checked.
+* Report: ready for review by the supervisor.
 
 ## Acknowledgments
 
-The weekly assignments and notebook templates were provided by Prof. Levent Subaşı (Istanbul Technical University), who supervises the project. AI tools (Claude and ChatGPT) were used as described in `AI_NOTES.md`. The English translation, the verification experiments in `analysis/` and the technical report were prepared with the help of Claude (Anthropic) during a review session in November 2026.
+The weekly assignments and notebook templates were provided by Prof. Levent Subaşı (Istanbul Technical University). AI tools (Claude and ChatGPT) were used as described in `AI_NOTES.md`. The English translation, the extra experiments in `analysis/` and the report were prepared with the help of Claude (Anthropic) in November 2026.
