@@ -1,138 +1,165 @@
+# Record of AI assistance
 
-# Hafta 1 - Elementary Cellular Automata
+*This file was originally written in Turkish by the student. It was translated into English in November 2026 without changing its content. The final section, "Review session", was added at that time.*
 
-Bu haftaki `01_elementary_CA.ipynb` çalışmasında bazı teknik konuları anlamak ve sonuçları kontrol etmek için Claude ve ChatGPT'den destek aldım.
+# Week 1: Elementary Cellular Automata
 
-## AI'dan aldığım yardım
+In this week's `01_elementary_CA.ipynb` work I received support from Claude and ChatGPT to understand some technical topics and to check results.
 
-- `rule_output` fonksiyonundaki bit kaydırma (`>>`) ve bit maskeleme (`&`) işlemlerini anlamak için açıklamalar aldım.
-- Kural 110 tablosundaki sıralamanın mantığını anlamak için yardım aldım.
-- Gözlem tablosundaki bazı değerleri ve sonuçları kontrol ettim.
-- Kural 90 ve $N_1(t) = 2^{\text{popcount}_2(t)}$ formülüyle ilgili araştırmada fikir ve açıklamalar aldım.
+## Help I received from AI
 
-## Kendi çalışmam
+- I received explanations to understand the bit shift (`>>`) and bit mask (`&`) operations in the `rule_output` function.
+- I received help understanding the logic of the ordering in the Rule 110 table.
+- I checked some values and results in the observation table.
+- I received ideas and explanations for the investigation of Rule 90 and the formula $N_1(t) = 2^{\text{popcount}_2(t)}$.
 
-- Ödevdeki fonksiyonları kendim tamamladım.
-- Kodların ve kuralların nasıl çalıştığını inceledim.
-- Farklı kurallarda oluşan desenleri karşılaştırdım.
-- Bit işlemleriyle Kural 90 arasındaki ilişkiyi anlamaya çalıştım.
+## My own work
 
-## Not
+- I completed the functions in the assignment myself.
+- I studied how the code and the rules work.
+- I compared the patterns produced by different rules.
+- I tried to understand the relationship between bit operations and Rule 90.
 
-AI'ı özellikle anlamadığım teknik konuları öğrenmek ve bazı sonuçları kontrol etmek için kullandım. Kodların mantığını kendim anlamaya çalıştım.
+## Note
 
-
-# Hafta 2 - Rule Classification
-
-Bu haftaki `02_rule_classification.ipynb` çalışmasında bazı kodları kontrol etmek ve teknik konuları anlamak için AI'dan destek aldım.
-
-## AI'dan aldığım yardım
-
-- Bazı fonksiyonların nasıl çalıştığıyla ilgili açıklamalar aldım.
-- 256 kuralın incelendiği bölümde ve yoğunluk ile etkinlik hesaplamalarında kod desteği aldım.
-- Grafiklerin hazırlanması ve bazı kod hatalarının düzeltilmesinde yardım aldım.
-- Seçilen 16 kuralın sonuçlarını değerlendirirken fikir aldım.
-
-## Kendi çalışmam
-
-- Notebook'taki testleri ve sonuçları kontrol ettim.
-- Yoğunluk ve etkinlik kavramlarını inceledim.
-- Grafiklerdeki davranışları karşılaştırdım.
-- Wolfram'ın dört sınıfını ve başlangıç koşullarının etkisini anlamaya çalıştım.
-
-## Not
-
-AI'ı daha çok teknik açıklamalar ve kod kontrolü için kullandım. Testleri değiştirmedim veya sonuçları önceden belirlenmiş değerlere göre ayarlamadım. Sınıflandırmaları grafikler ve sayısal sonuçlarla karşılaştırarak değerlendirdim.
+I used AI especially to learn technical topics I did not understand and to check some results. I tried to understand the logic of the code myself.
 
 
-# Hafta 3 - Başlangıç Koşullarına Duyarlılık
+# Week 2: Rule Classification
 
-Bu haftaki `03_sensitivity.ipynb` çalışmasında özellikle bazı kodları yeniden hazırlarken ve sonuçları yorumlarken Claude'dan destek aldım.
+In this week's `02_rule_classification.ipynb` work I received support from AI to check some code and to understand technical topics.
 
-## AI'dan aldığım yardım
+## Help I received from AI
 
-- Dört TODO fonksiyonunu yeniden oluştururken kod önerileri aldım.
-- Deneylerin çalıştırılması ve sayısal sonuçların düzenlenmesinde destek aldım.
-- Bazı tablo ve açıklamaları daha anlaşılır yazmak için yardım aldım.
-- Grafiklerdeki sonuçları yorumlarken fikir aldım.
+- I received explanations of how some functions work.
+- I received coding support in the section where the 256 rules are examined and in the density and activity calculations.
+- I received help preparing the plots and fixing some code errors.
+- I received ideas when evaluating the results for the 16 selected rules.
 
-## Kendi çalışmam
+## My own work
 
-- Fonksiyonların nasıl çalıştığını anlamaya çalıştım.
-- Hamming uzaklığı ve sapma yarıçapı kavramlarını inceledim.
-- Farklı kurallarda başlangıç değişikliklerinin nasıl yayıldığını karşılaştırdım.
-- Kodları ve sonuçları yeniden kontrol etmeyi, anlamadığım noktaları da toplantıda sormayı planladım.
+- I checked the tests and the results in the notebook.
+- I studied the concepts of density and activity.
+- I compared the behaviours in the plots.
+- I tried to understand Wolfram's four classes and the effect of initial conditions.
 
-## Not
+## Note
 
-AI'ı özellikle kodları kontrol etmek, konuyu öğrenmek ve sonuçları anlamak için kullandım. Çalışmanın mantığını kendi başıma açıklayabilmek için tekrar etmeye çalıştım.
-
-
-# Hafta 4 - Conway's Game of Life
-
-Bu haftaki `04_game_of_life.ipynb` çalışmasının bazı bölümlerinde Claude'dan destek aldım.
-
-## AI'dan aldığım yardım
-
-- Takıldığım bazı TODO fonksiyonlarında kod önerileri aldım.
-- Yazılı sorularda fikir ve cevap önerilerinden yararlandım.
-- Kodların çalışmasını ve test sonuçlarını kontrol ederken destek aldım.
-
-## Kendi çalışmam
-
-- Kodları notebook'a yerleştirip Google Colab'da çalıştırdım.
-- `np.roll`, boolean maskeler ve B3/S23 kurallarını inceledim.
-- Still life, oscillator ve spaceship örneklerini karşılaştırdım.
-- Kodların ve elde edilen sonuçların mantığını anlamaya çalıştım.
-
-## Not
-
-AI'ı özellikle takıldığım yerlerde yardımcı bir araç olarak kullandım. Notebook'u kendim çalıştırdım ve sonuçları kontrol ettim.
+I used AI mostly for technical explanations and code checking. I did not change the tests or tune the results to predetermined values. I evaluated the classifications by comparing them with the plots and the numerical results.
 
 
-# Hafta 5 - Rastgele Başlangıç Koşulları
+# Week 3: Sensitivity to Initial Conditions
 
-Bu haftaki `05_random_initial_conditions.ipynb` çalışmasının bazı bölümlerinde AI'dan destek aldım.
+In this week's `03_sensitivity.ipynb` work I received support from Claude especially when rebuilding some code and interpreting results.
 
-## AI'dan aldığım yardım
+## Help I received from AI
 
-- Takıldığım birkaç TODO kısmında kod önerileri aldım.
-- Bazı yazılı sorularda fikir almak için kullandım.
-- Kodların çalışmasını kontrol ederken destek aldım.
-- Ek deneylerin hazırlanması ve sonuçların karşılaştırılmasında yardım aldım.
+- I received code suggestions when rebuilding the four TODO functions.
+- I received support in running the experiments and organising the numerical results.
+- I received help writing some tables and explanations more clearly.
+- I received ideas when interpreting the results in the plots.
 
-## Kendi çalışmam
+## My own work
 
-- Notebook'u Google Colab'da kendim çalıştırdım.
-- Testleri ve sonuçları kontrol ettim.
-- Grafiklerde çıkan sonuçları inceledim.
-- Yoğunluk, etkinlik ve standart sapma kavramlarını anlamaya çalıştım.
-- M = 100 ve 300 değerlerini, q parametresini ve farklı ızgara boyutlarını karşılaştırdım.
+- I tried to understand how the functions work.
+- I studied the concepts of Hamming distance and perturbation radius.
+- I compared how initial changes spread in different rules.
+- I planned to check the code and the results again and to ask about points I did not understand in the meeting.
 
-## Not
+## Note
 
-AI'ı takıldığım yerlerde ve ek deneyleri hazırlarken yardımcı bir araç olarak kullandım. Sonuçları inceleyip anlamaya çalıştım.
+I used AI especially to check code, to learn the topic and to understand the results. I tried to go over the work again so that I could explain its logic on my own.
 
 
-# Hafta 6 - Stochastic Game of Life
+# Week 4: Conway's Game of Life
 
-Bu haftaki `06_stochastic_life.ipynb` çalışmasının bazı bölümlerinde AI'dan destek aldım.
+In some parts of this week's `04_game_of_life.ipynb` work I received support from Claude.
 
-## AI'dan aldığım yardım
+## Help I received from AI
 
-- Takıldığım bazı TODO kısımlarında kod önerileri aldım.
-- Bağımsız ve kümelenmiş ölüm modellerinin kodlarını hazırlarken destek aldım.
-- 480 simülasyonun çalıştırılması ve sürecin hızlandırılması için yardım aldım.
-- Grafiklerin hazırlanması ve kodların kontrol edilmesinde destek aldım.
+- I received code suggestions in some TODO functions where I got stuck.
+- I used ideas and suggested answers for the written questions.
+- I received support when checking that the code works and checking the test results.
 
-## Kendi çalışmam
+## My own work
 
-- Rastgele ölüm olasılığının sistem üzerindeki etkilerini inceledim.
-- Bağımsız ve kümelenmiş ölümleri karşılaştırma fikri üzerine çalıştım.
-- L değerlerini 60, 80, 100 ve 200 olarak belirledim.
-- Daha uzun süreli sonuçları görmek için deneyleri 3.000 adıma çıkardım.
-- Yoğunluk, etkinlik ve sönme sürelerini anlamaya ve sonuçları yorumlamaya çalıştım.
+- I placed the code in the notebook and ran it in Google Colab.
+- I studied `np.roll`, Boolean masks and the B3/S23 rules.
+- I compared the still life, oscillator and spaceship examples.
+- I tried to understand the logic of the code and of the results obtained.
 
-## Not
+## Note
 
-AI'ı özellikle kodlarda takıldığım ve çok sayıda simülasyon çalıştırmam gereken yerlerde kullandım. Deneylerin mantığını ve elde edilen sonuçları anlamaya çalıştım.
+I used AI as a helping tool especially where I got stuck. I ran the notebook myself and checked the results.
+
+
+# Week 5: Random Initial Conditions
+
+In some parts of this week's `05_random_initial_conditions.ipynb` work I received support from AI.
+
+## Help I received from AI
+
+- I received code suggestions in a few TODO parts where I got stuck.
+- I used it to get ideas for some written questions.
+- I received support when checking that the code works.
+- I received help in preparing the additional experiments and comparing the results.
+
+## My own work
+
+- I ran the notebook myself in Google Colab.
+- I checked the tests and the results.
+- I examined the results in the plots.
+- I tried to understand the concepts of density, activity and standard deviation.
+- I compared the values M = 100 and 300, the parameter q and different grid sizes.
+
+## Note
+
+I used AI as a helping tool where I got stuck and when preparing the additional experiments. I examined the results and tried to understand them.
+
+
+# Week 6: Stochastic Game of Life
+
+In some parts of this week's `06_stochastic_life.ipynb` work I received support from AI.
+
+## Help I received from AI
+
+- I received code suggestions in some TODO parts where I got stuck.
+- I received support when preparing the code for the independent and clustered death models.
+- I received help running the 480 simulations and speeding up the process.
+- I received support in preparing the plots and checking the code.
+
+## My own work
+
+- I studied the effects of the random death probability on the system.
+- I worked on the idea of comparing independent and clustered deaths.
+- I chose the values of L as 60, 80, 100 and 200.
+- I increased the experiments to 3,000 steps to see longer-term results.
+- I tried to understand density, activity and extinction times and to interpret the results.
+
+## Note
+
+I used AI especially where I got stuck in the code and where I needed to run many simulations. I tried to understand the logic of the experiments and the results obtained.
+
+*[Translation note: the Week 5 entry mentions "M = 100 and 300". The notebook itself compares M = 12 and M = 24 (Section 15.1). The text was translated as written.]*
+
+
+# Review session (November 2026)
+
+This section was written during a review session with Claude (Anthropic, model Claude Opus 5.5) acting on the student's written request. It records what the AI did so that a reader, a supervisor or a journal can judge the extent of AI involvement.
+
+## What the AI did
+
+- Translated all Markdown text, comments, printed messages and plot labels of the six notebooks from Turkish into English. The code logic was not changed except for one variable rename in notebook 06 (see `VALIDATION_REPORT.md`, Section 3.1).
+- Added visible review notes and two corrections (toad population, broken table and equation markup) to the notebooks.
+- Re-executed all notebooks and compared every printed number with the stored outputs.
+- Wrote the code in `analysis/` (an independent simulation engine, tests, Experiments A to F, figures and cross-checks), ran about 11,500 additional simulations and wrote the CSV files in `results/`.
+- Wrote `README.md`, `VALIDATION_REPORT.md`, `CHANGELOG.md`, `requirements.txt` and the technical report in `report/`.
+
+## What the AI did not do
+
+- It did not change the scientific model, the original parameters or any stored result.
+- It did not submit, publish, or send anything to anyone.
+
+## Note for any future journal submission
+
+The technical report in `report/` was drafted by an AI and is intended for review by the supervisor. If the work is later submitted to a journal whose policy restricts AI-written manuscript text (for example the National High School Journal of Science), the manuscript must be written by the student in line with that policy. AI-generated prose from this repository should not be reused or paraphrased for such a submission.

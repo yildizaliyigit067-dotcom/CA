@@ -2,3 +2,5 @@
 __pycache__/
 work/
 outputs/
+*.pyc
+.pytest_cache/
