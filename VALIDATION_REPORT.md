@@ -131,7 +131,7 @@ Results (L = 60): at μ = 0, 39/40 runs reached an exact periodic state within 3
 
 ## 6. Points that remain open
 
-* No literature comparison was made for the stochastic Game of Life with mortality applied after the update. References to related models are given in the report, but whether this exact model has been studied before was not established.
+* A preliminary literature search (15 November 2026) found stochastic Game of Life variants with site-independent noise only, and found that the general effect of spatially aggregated disturbance on extinction is known in spatial ecology (Kallimanis et al. 2005, Liao et al. 2015). The search was not systematic.
 * The extinction-time growth with L was not fitted. A formal analysis would need larger M and more sizes.
 * The control model removes spatial correlation but keeps the temporal fluctuation of the global rate. Other controls (for example matching the number of distinct objects hit) were not tried.
 * The 30-step settling threshold and the 300-step comparison interval in Experiment E are operational choices. Their influence was not studied systematically.

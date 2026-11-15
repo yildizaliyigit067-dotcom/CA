@@ -103,7 +103,7 @@ Details, uncertainties and corrections are in `VALIDATION_REPORT.md` and in the 
 * Forty realisations per condition in most experiments. Extinction fractions carry 95% confidence intervals of up to about ±0.15.
 * One functional form of spatial correlation (Gaussian kernel) and three widths.
 * Long-time behaviour is classified with explicit but operational criteria (see `VALIDATION_REPORT.md`, Experiment E).
-* No systematic literature comparison has yet been made for this specific stochastic model.
+* The literature comparison is preliminary. No Game of Life study with spatially correlated mortality was found, but the general effect (clustered disturbances raise extinction risk) is known from spatial ecology, for example Kallimanis et al., *Conservation Biology* 19, 534 (2005). See the Discussion of the report.
 
 ## Research status
 
