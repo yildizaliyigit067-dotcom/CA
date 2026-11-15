@@ -1,56 +1,87 @@
+# Research Development Notes
 
-# Research Development and AI Assistance
+This document summarises the research activities and the technical assistance received during the project.
 
-## Project Overview
+## Week 1: Elementary Cellular Automata
 
-This project investigates emergent complexity in cellular automata through six computational notebooks.
+**Research activities**
+- Implemented and examined elementary cellular automata.
+- Studied Rule 90, Rule 110 and bitwise operations.
+- Compared numerical results and generated patterns.
 
-The research was conducted under academic supervision, with AI tools supporting technical development, computational analysis and documentation.
+**Technical assistance**
+- Claude and ChatGPT provided explanations of bitwise operations, rule tables and selected mathematical results.
 
-## Weeks 1–3: Elementary Cellular Automata
+## Week 2: Rule Classification
 
-The student investigated elementary cellular automata, rule classification and sensitivity to initial conditions.
+**Research activities**
+- Investigated the classification of 256 elementary cellular automata.
+- Examined density, activity and Wolfram's four classes.
+- Compared the behaviour of 16 selected rules.
 
-Claude and ChatGPT supported technical explanations, selected code implementations, debugging and numerical verification.
+**Technical assistance**
+- AI supported selected code implementations, debugging, plot preparation and result interpretation.
 
-The student reviewed the implementations, examined the results and studied the underlying mathematical concepts.
+## Week 3: Sensitivity to Initial Conditions
 
-## Weeks 4–5: Game of Life
+**Research activities**
+- Investigated Hamming distance and perturbation radius.
+- Compared the propagation of initial perturbations across different rules.
+- Examined numerical results and visualisations.
 
-The student investigated Conway's Game of Life, random initial conditions, population density, activity and statistical variability.
+**Technical assistance**
+- AI provided suggestions for four TODO functions, experiment execution, result organisation and written explanations.
 
-AI tools assisted with selected code sections, experiment preparation and result verification.
+## Week 4: Conway's Game of Life
 
-The student executed the original notebooks in Google Colab and examined the resulting numerical data and visualisations.
+**Research activities**
+- Studied the B3/S23 rules and their implementation.
+- Investigated still lifes, oscillators and spaceships.
+- Executed the notebook in Google Colab and checked its results.
+
+**Technical assistance**
+- AI provided selected code suggestions, debugging assistance and ideas for written answers.
+
+## Week 5: Random Initial Conditions
+
+**Research activities**
+- Investigated the influence of initial conditions on population density and activity.
+- Examined statistical variability and different grid sizes.
+- Executed experiments and compared numerical results.
+
+**Technical assistance**
+- AI assisted with selected TODO functions, additional experiment preparation, debugging and written explanations.
 
 ## Week 6: Stochastic Game of Life
 
-The research was extended to independent and spatially clustered mortality.
+**Research activities**
+- Investigated independent and spatially clustered mortality.
+- Selected lattice sizes of 60, 80, 100 and 200.
+- Extended simulations to 3,000 steps.
+- Examined density, activity and extinction behaviour.
 
-The student selected lattice sizes, investigated mortality parameters and extended simulations to 3,000 steps.
+**Technical assistance**
+- AI supported code implementation, computational optimisation, figure preparation and execution of 480 simulations.
 
-AI tools supported implementation, computational optimisation and execution of 480 simulations.
+## Technical Review: November 2026
 
-## November 2026: Technical Review
+A technical review was conducted with Claude Opus 5.5.
 
-Claude Opus 5.5 assisted with repository preparation and computational verification.
-
-The work included:
-
-- English translation of notebook documentation.
-- Re-execution and validation of six notebooks.
-- Correction of identified technical issues.
-- Development of an independent simulation framework.
+The review included:
+- Translation of six notebooks into English.
+- Correction of documentation and execution issues.
+- Re-execution and verification of the notebooks.
+- Development of an independent simulation and testing framework.
 - Execution of approximately 11,500 additional simulations.
-- Generation of datasets and scientific figures.
-- Preparation of technical documentation and a preliminary scientific report.
+- Preparation of numerical datasets, figures and repository documentation.
+- Drafting of a preliminary scientific report for supervisor review.
 
-The original scientific model and stored results were preserved.
+The original scientific model and stored experimental results were preserved.
 
 ## Research Integrity
 
-AI tools were used for technical assistance, computational development, validation and preliminary documentation.
+AI tools supported technical explanations, programming, computational experiments, verification and documentation.
 
-The preliminary report was AI-drafted for supervisor review. Any future journal manuscript will comply with the target journal's AI-use and authorship policies.
+The preliminary scientific report was AI-drafted for supervisor review. Any future journal manuscript will be prepared in accordance with the target journal's authorship and AI-use policies.
 
-Detailed verification records are available in `VALIDATION_REPORT.md`.
+Further technical details are documented in `VALIDATION_REPORT.md` and `CHANGELOG.md`.
