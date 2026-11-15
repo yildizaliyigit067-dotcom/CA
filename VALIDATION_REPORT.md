@@ -50,7 +50,7 @@ The next stage is supervisor review, followed by any necessary corrections and p
 
 The sections below are the detailed record that the technical report refers to.
 
-Review of the repository `yildizaliyigit067-dotcom/CA` carried out on 15 November 2026 on the branch `review/english-and-verification`. The starting point was commit `3d72928` on `main`. The `main` branch was not modified.
+Review of the repository `yildizaliyigit067-dotcom/CA` carried out on 15 November 2026 on the branch `review/english-and-verification`. The starting point was commit `3d72928` on `main`. The reviewed version was merged into `main` on the same day. The original Turkish version remains available at commit `3d72928`.
 
 The review was carried out with an AI assistant (Claude, Anthropic) working in a cloud Linux environment. Every statement below that something was "verified" refers to code that was actually executed in that environment. The software versions are recorded in `results/environment.txt`.
 

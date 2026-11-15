@@ -1,6 +1,6 @@
 # Changelog
 
-All changes below were made on the branch `review/english-and-verification`, starting from commit `3d72928` on `main`. The original Turkish notebooks remain available on `main` and in the history of this branch.
+All changes below were made on the branch `review/english-and-verification`, starting from commit `3d72928` on `main`. These changes were merged into `main` on the same day. The original Turkish notebooks remain available at commit `3d72928`.
 
 ## 2026-11-15: English translation and scientific verification
 
@@ -15,7 +15,7 @@ All changes below were made on the branch `review/english-and-verification`, sta
 - All six notebooks: Markdown, headings, comments, docstrings, printed messages, assertion messages, plot titles, axis labels and legend labels translated from Turkish into English. Variable names, function names, dictionary keys and output file names were kept unchanged (for example `uzun_deney`, `tekrar`, `stochastic_3000_tum_480_simulasyon.csv`). The model labels `Bağımsız` and `Kümelenmiş` became `Independent` and `Clustered`.
 - All six notebooks were re-executed from a clean kernel (Python 3.13.18). Every printed number is identical to the original outputs. Only wall-clock timings differ.
 - `06_stochastic_life.ipynb`: the unchecked item "re-run the current version from start to finish" in the submission checklist was marked as done, with a note on how it was verified.
-- `AI_NOTES.md`: translated into English and extended with a "Review session" section.
+- `AI_NOTES.md`: rewritten in English as a summary of AI assistance, including the November 2026 technical review.
 - `README.md`: rewritten in English.
 - `.gitignore`: added `*.pyc` and `.pytest_cache/`.
 

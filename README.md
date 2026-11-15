@@ -38,7 +38,7 @@ analysis/                           Review code: engine, experiments A to F, fig
 results/                            CSV output of all experiments, summary tables, environment record
 figures/                            Figures used in the technical report
 report/                             LaTeX source and PDF of the technical report
-AI_NOTES.md                         Record of AI assistance, week by week
+AI_NOTES.md                         Record of AI assistance
 VALIDATION_REPORT.md                What was checked, what was corrected, what remains open
 CHANGELOG.md                        Changes made on the review branch
 requirements.txt                    Python dependencies
