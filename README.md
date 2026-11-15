@@ -2,7 +2,7 @@
 
 A computational study, carried out by a high-school student, of how simple local update rules produce complex large-scale behaviour. The project ends with a stochastic version of Conway's Game of Life in which live cells die at random after every update. The main question is whether the **spatial arrangement** of these deaths, and not only their probability, changes the long-time fate of the system.
 
-> **Status:** research in progress. This repository contains weekly notebooks prepared in a summer project supervised by Levent Hoca (Istanbul Technical University) and an accompanying technical report prepared for his review. The work has **not** been peer reviewed or published. The notebooks were originally written in Turkish and were translated into English in November 2026.
+> **Status:** research in progress. This repository contains weekly notebooks prepared in a summer project supervised by Prof. Levent Subaşı (Istanbul Technical University) and an accompanying technical report prepared for his review. The work has **not** been peer reviewed or published. The notebooks were originally written in Turkish and were translated into English in November 2026.
 
 The repository was originally forked from `subasilevent/CA`.
 
@@ -113,4 +113,4 @@ Details, uncertainties and corrections are in `VALIDATION_REPORT.md` and in the 
 
 ## Acknowledgments
 
-The weekly assignments and notebook templates were provided by Levent Hoca (Istanbul Technical University), who supervises the project. AI tools (Claude and ChatGPT) were used as described in `AI_NOTES.md`. The English translation, the verification experiments in `analysis/` and the technical report were prepared with the help of Claude (Anthropic) during a review session in November 2026.
+The weekly assignments and notebook templates were provided by Prof. Levent Subaşı (Istanbul Technical University), who supervises the project. AI tools (Claude and ChatGPT) were used as described in `AI_NOTES.md`. The English translation, the verification experiments in `analysis/` and the technical report were prepared with the help of Claude (Anthropic) during a review session in November 2026.

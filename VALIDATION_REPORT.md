@@ -184,4 +184,5 @@ Results (L = 60): at μ = 0, 39/40 runs reached an exact periodic state within 3
 * A preliminary literature search (15 November 2026) found stochastic Game of Life variants with site-independent noise only, and found that the general effect of spatially aggregated disturbance on extinction is known in spatial ecology (Kallimanis et al. 2005, Liao et al. 2015). The search was not systematic.
 * The extinction-time growth with L was not fitted. A formal analysis would need larger M and more sizes.
 * The control model removes spatial correlation but keeps the temporal fluctuation of the global rate. Other controls (for example matching the number of distinct objects hit) were not tried.
+* Census (added 15 November 2026, `analysis/census.py`): in the 40 independent runs at μ = 0.005, blocks were 223 of 241 objects (93%) and 96% of live cells at t = 3000. Other conditions were not counted.
 * The 30-step settling threshold and the 300-step comparison interval in Experiment E are operational choices. Their influence was not studied systematically.
