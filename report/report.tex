@@ -36,7 +36,7 @@ This project began as a sequence of weekly exercises on elementary cellular auto
 
 \section{Scientific background}\label{sec:background}
 
-The project notebooks (Weeks 1 to 5) establish the tools used here. They implement elementary cellular automata with periodic boundaries, reproduce Wolfram's qualitative classes for the 256 rules \cite{wolfram1983,wolfram1984}, verify that the number of occupied cells of Rule 90 started from one cell is $N_1(t)=2^{\mathrm{popcount}(t)}$ (a consequence of its additivity \cite{martin1984}), and confirm that perturbations spread no faster than the light-cone bound $R(t)\le t$. They then implement the Game of Life, reproduce the block, beehive, blinker, toad and glider, measure the glider velocity of $1/4$ cell per update in each lattice direction, and use ensembles of random initial grids to show that the late-time density depends non-monotonically on the initial density. All of these results were reproduced exactly when the notebooks were re-executed for this report (see \texttt{VALIDATION\_REPORT.md}).
+The project notebooks (Weeks 1 to 5) establish the tools used here. They implement elementary cellular automata with periodic boundaries, reproduce Wolfram's qualitative classes for the 256 rules \cite{wolfram1983,wolfram1984}, verify that the number of occupied cells of Rule 90 started from one cell is $N_1(t)=2^{\mathrm{popcount}(t)}$ (a consequence of its additivity \cite{martin1984}), and confirm that perturbations spread no faster than the light-cone bound $R(t)\le t$. They then implement the Game of Life, reproduce the block, beehive, blinker, toad and glider, measure the glider velocity of $1/4$ cell per update in each lattice direction, and use ensembles of random initial grids to show that the late-time density depends non-monotonically on the initial density. All of these results were reproduced exactly when the notebooks were re-executed for this report (see \texttt{CHANGELOG.md}).
 
 \section{Research questions and objectives}
 
@@ -280,6 +280,6 @@ AI tools (Claude and ChatGPT) were used during the weekly project as recorded in
 \appendix
 \section{Corrections made to the project notebooks}
 
-During the review one execution-order bug in notebook~06 was fixed (a loop variable overwrote a test grid), the population of the toad oscillator in notebook~04 was corrected from ``6 to 8'' to 6, and several statements were annotated where the data did not support them. No model, parameter or stored result was changed. Details are in \texttt{VALIDATION\_REPORT.md} and \texttt{CHANGELOG.md}.
+During the review one execution-order bug in notebook~06 was fixed (a loop variable overwrote a test grid), the population of the toad oscillator in notebook~04 was corrected from ``6 to 8'' to 6, and several statements were annotated where the data did not support them. No model, parameter or stored result was changed. Details are in \texttt{CHANGELOG.md}.
 
 \end{document}

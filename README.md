@@ -39,7 +39,7 @@ results/                            CSV output of all experiments, summary table
 figures/                            Figures used in the technical report
 report/                             LaTeX source and PDF of the technical report
 AI_NOTES.md                         Record of AI assistance
-VALIDATION_REPORT.md                What was checked, what was corrected, what remains open
+VALIDATION_REPORT.md                Summary of the technical validation
 CHANGELOG.md                        Changes made on the review branch
 requirements.txt                    Python dependencies
 ```
@@ -95,14 +95,14 @@ These statements hold for the parameters stated (p0 = 0.35, periodic L × L grid
 5. **Extinction times grow with system size.** Median extinction times increase from L = 40 to L = 200 in both models. No scaling law is claimed.
 6. **Earlier weeks.** The Rule 90 formula N1(t) = 2^popcount(t), the light-cone bound R(t) ≤ t, the exact linearity test for Rule 90, the glider velocity of 1/4 cell per step and the non-monotonic dependence of the late-time Life density on the initial density all reproduce exactly.
 
-Details, uncertainties and corrections are in `VALIDATION_REPORT.md` and in the technical report in `report/`.
+Details, uncertainties and corrections are in the technical report in `report/` and in `CHANGELOG.md`.
 
 ## Limitations
 
 * Finite grids (L ≤ 200) and finite observation times (T ≤ 3,000). Survival up to T is not survival forever.
 * Forty realisations per condition in most experiments. Extinction fractions carry 95% confidence intervals of up to about ±0.15.
 * One functional form of spatial correlation (Gaussian kernel) and three widths.
-* Long-time behaviour is classified with explicit but operational criteria (see `VALIDATION_REPORT.md`, Experiment E).
+* Long-time behaviour is classified with explicit but operational criteria (see the technical report, Section 5).
 * The literature comparison is preliminary. No Game of Life study with spatially correlated mortality was found, but the general effect (clustered disturbances raise extinction risk) is known from spatial ecology, for example Kallimanis et al., *Conservation Biology* 19, 534 (2005). See the Discussion of the report.
 
 ## Research status
