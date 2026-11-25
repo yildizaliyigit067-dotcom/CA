@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CA Proje – Soru Co-pilot</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#0f1115;color:#e8e8e8}
+  header{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;background:#171a21;border-bottom:1px solid #2a2f3a;position:sticky;top:0}
+  button,select,input{font-size:16px;border-radius:8px;border:1px solid #3a4150;background:#222733;color:#fff;padding:8px 12px}
+  button#mic{font-size:20px;padding:12px 18px;background:#1f7a3f;border-color:#1f7a3f;font-weight:600}
+  button#mic.on{background:#b3261e;border-color:#b3261e}
+  input#q{flex:1;min-width:200px}
+  #status{font-size:13px;color:#9aa3b2}
+  #heard{padding:10px 16px;color:#9aa3b2;font-size:15px;min-height:40px;border-bottom:1px solid #222}
+  #answers{padding:16px;display:grid;gap:12px;transition:opacity .3s}
+  .card{background:#1a1e27;border:1px solid #2a2f3a;border-radius:12px;padding:14px 16px}
+  .card.top{border-color:#3d8bfd;background:#152035}
+  .card h3{margin:0 0 6px;font-size:14px;color:#7fb2ff;font-weight:600}
+  .card p{margin:0;font-size:22px;line-height:1.4}
+  .card.top p{font-size:26px}
+  .card ul{margin:8px 0 0;padding-left:20px;font-size:17px;color:#c9d1de}
+  #empty{color:#6b7385;font-size:18px;padding:20px 16px}
+</style>
+</head>
+<body>
+<header>
+  <button id="mic">🎤 Dinlemeyi başlat</button>
+  <select id="lang">
+    <option value="tr-TR">Türkçe sorular</option>
+    <option value="en-US">English questions</option>
+  </select>
+  <input id="q" placeholder="ya da soruyu yaz…">
+  <span id="status">Hazır</span>
+</header>
+<div id="heard">Duyulan: —</div>
+<div id="answers"><div id="empty">Mikrofonu aç; soru gelince cevap burada çıkar.</div></div>
+
+<script>
+// ---------- BİLGİ TABANI (zip'teki rapor/README'den) ----------
+const KB = [
+ {t:"Projenin ana sorusu",
+  k:["ana soru","arastirma sorusu","soru ne","amac","konu","proje ne","neyi","main question","research question","about","goal","aim","purpose","project"],
+  a:"Her hücrenin ölme olasılığı aynıyken, ölümlerin NEREDE olduğu önemli mi? Bağımsız ölümlerle kümelenmiş ölümleri karşılaştırdım.",
+  b:["Game of Life'a ek kural: her adımdan sonra her canlı hücre μ olasılıkla rastgele ölüyor.","İki model: bağımsız ölüm ve kümelenmiş (uzaysal korelasyonlu) ölüm.","Başlık: “Same Mortality, Different Fate”."]},
+ {t:"Ana bulgu / sonuç",
+  k:["sonuc","bulgu","ne buldun","ne buldunuz","ana sonuc","onemli","result","finding","found","conclusion","main result","discover"],
+  a:"Aynı ölüm olasılığında kümelenmiş ölümler sistemi çok daha hızlı yok ediyor. μ=0.005'te bağımsızda 40 koşunun hiçbiri, kümelenmişte 40'ın 40'ı söndü.",
+  b:["Kümelenmişte medyan sönme süresi ≈ 841 adım.","60×60 ızgara, başlangıç yoğunluğu %35, 3000 adım.","Bağımsız model benzer sönme için yaklaşık 10 kat yüksek μ istiyor."]},
+ {t:"Mekanizma: blok kendini onarır",
+  k:["neden","niye","mekanizma","aciklama","blok","onar","tamir","why","mechanism","explain","block","repair","self repair","reason"],
+  a:"Geride kalanların çoğu 2×2 blok (%93). Blok bir hücre kaybederse kurallar onu bir adımda geri yapar; ancak aynı anda 2+ hücre ölürse yıkılır. Kümelenmiş ölümler tam bunu yapıyor.",
+  b:["Tek hücre kaybı → L-trominoya dönüşür → boş köşe 3 komşuyla doğar → blok geri gelir.","Bağımsızda çoklu vuruş olasılığı ~6μ²; kümelenmişte μ=0.005'te ~40 kat daha olası.","Blok ömrü tahmini (1−q)^t, simülasyonla ~%10 içinde uyuşuyor."]},
+ {t:"Ölüm oranları gerçekten eşit mi?",
+  k:["esit","ayni oran","gercekten ayni","daha fazla mi oldur","eslestir","olum orani","fraction","same rate","really the same","equal","matched","kill more","mortality fraction"],
+  a:"Evet. Her iki modelde de her adım ölen canlı hücre oranı μ'ye ~%3 içinde eşit. Yani fark daha çok öldürmekten değil, ölümlerin yerinden.",
+  b:["Gerçekleşen oran 0.985μ ile 1.026μ arasında (33 koşul).","Kümelenmişte işaretli bir hücrenin komşusunun da işaretli olma olasılığı 0.67, bağımsızda 0.02 (μ=0.02)."]},
+ {t:"Kontrol modeli (dalgalanma)",
+  k:["kontrol","dalgalanma","varyans","sayisi degisiyor","control","fluctuation","variance","number of deaths"],
+  a:"Ölüm SAYISINDAKİ dalgalanmayı kümelenmişle aynı yapan ama mekânsal kümelenmesi olmayan bir kontrol model kurdum. Düşük μ'de bağımsız gibi davrandı, yani etki konumdan geliyor.",
+  b:["μ≤0.005'te kontrol: 0/40 sönme.","μ=0.01: bağımsız 6/40, kontrol 13/40, kümelenmiş 40/40.","Kümelenmiş maskelerde adım başı ölüm sayısının SD'si ~4 kat fazla."]},
+ {t:"Kümelenmiş ölüm nasıl üretiliyor?",
+  k:["kumelenmis nasil","nasil urettin","gauss","gaussian","sigma","maske","kernel","bulanik","clustered how","how did you generate","mask","blur","correlation width"],
+  a:"Rastgele normal bir alanı Gauss filtresiyle (σ=2) bulanıklaştırıp eşikledim. Böylece her hücre tam μ olasılıkla ölüyor ama yakın hücreler birlikte ölme eğiliminde.",
+  b:["Z = (K_σ * ξ)/‖K_σ‖, U=Φ(Z), U<μ ise hücre ölür.","Her adımda yeni maske çekiliyor.","σ = 1, 2, 4 denendi; μ≥0.005'te hepsinde kümelenmiş tüm koşuları söndürdü."]},
+ {t:"Izgara boyutu etkisi",
+  k:["boyut","buyukluk","izgara","l=","200","system size","grid size","lattice size","bigger","larger"],
+  a:"Sonuç 40'tan 200'e kadar tüm boyutlarda geçerli. Büyük ızgaralar her iki modelde de daha geç sönüyor.",
+  b:["Kümelenmiş μ=0.005: medyan 647 (L=40) → 1335 adım (L=200).","Bağımsız μ=0.02: 767 → 2426 adım.","Yaklaşık logaritmik artışla uyumlu, ama ölçekleme iddia edilmiyor."]},
+ {t:"Başlangıç yoğunluğu etkisi",
+  k:["baslangic","yogunluk","p0","initial","density","starting","initial condition"],
+  a:"Başlangıç yoğunluğu (0.20, 0.35, 0.50) sonucu değiştirmedi: bağımsızda hiç sönme yok, kümelenmişte hepsi söndü.",
+  b:["Varyansın başlangıç ızgarasından gelen kısmı 0–%7; asıl rastgelelik ölüm sürecinden."]},
+ {t:"Kaç simülasyon / istatistik",
+  k:["kac simulasyon","kac kosu","istatistik","guven araligi","anlamli","40","sample","how many","statistic","significant","confidence","runs"],
+  a:"Çoğu ayar için 40 bağımsız koşu yaptım; ek deneylerle toplam ~11.500 simülasyon. Farklar belirsizliklerden çok büyük.",
+  b:["μ=0.005: 0/40 vs 40/40, Wilson %95 aralıkları [0, 0.088] ve [0.912, 1] — çakışmıyor.","Sönme süreleri 3000'de kesildiği için ortalama yerine medyan ve hayatta kalma eğrileri.","Sabit tohumlar → sonuçlar tekrar üretilebilir."]},
+ {t:"Game of Life kuralları",
+  k:["kural","b3","s23","conway","game of life nedir","yasam oyunu","komsu","rules","what is game of life","neighbour","neighbor"],
+  a:"B3/S23: ölü hücre tam 3 canlı komşuyla doğar, canlı hücre 2 ya da 3 komşuyla yaşar, diğerleri ölür. 8 komşu, periyodik sınır.",
+  b:["Hafta 4'te blok, arı kovanı, blinker, toad ve glider üretildi.","Glider hızı: adım başına 1/4 hücre."]},
+ {t:"Hücresel otomat nedir",
+  k:["hucresel otomat nedir","cellular automat","what is a cellular","otomat nedir","ca nedir"],
+  a:"Basit kurallara göre komşularına bakarak güncellenen hücrelerden oluşan ızgara modeli. Basit kurallar karmaşık desenler üretebiliyor."},
+ {t:"Hafta 1–3: 1 boyutlu CA",
+  k:["rule 90","rule 30","rule 110","kural 90","kural 30","kural 110","wolfram","256","sinif","class","elementary","tek boyut","one dimensional","popcount","hassasiyet","sensitivity","hamming","isik konisi","light cone"],
+  a:"İlk haftalarda 1 boyutlu otomatları (Kural 0, 30, 90, 110), 256 kuralın Wolfram'ın 4 sınıfını ve tek hücre değişikliğinin yayılmasını inceledim.",
+  b:["Kural 90: N₁(t) = 2^popcount(t) doğrulandı.","Pertürbasyon yarıçapı R(t) ≤ t (ışık konisi sınırı).","Hafta 3: Hamming mesafesi ile hassasiyet."]},
+ {t:"Hafta 5: rastgele başlangıç",
+  k:["hafta 5","week 5","random initial","rastgele baslangic"],
+  a:"Rastgele başlangıç ızgaralarıyla çok koşu ortalaması aldım; geç zaman yoğunluğu başlangıç yoğunluğuna monoton olmayan şekilde bağlı."},
+ {t:"Bağımsız ölümde μ etkisi",
+  k:["mu artinca","olum olasiligi artinca","esik","threshold","increase mu","independent mortality","bagimsiz olum"],
+  a:"Bağımsız ölümde μ≤0.005'te hiç sönme yok; 0.0075'te 4/40, 0.015'te 31/40, μ≥0.03'te hepsi sönüyor.",
+  b:["μ=0'da geç yoğunluk ≈ 0.049.","Hayatta kalan popülasyonlar statik: arada hasar görüp onarılan durağan yapılar."]},
+ {t:"Kırılgan yapılar ters davranıyor",
+  k:["beehive","ari kovani","blinker","kirilgan","fragile","korur","protect","other objects","diger yapilar"],
+  a:"Tek vuruşla ölen yapılar (arı kovanı, blinker) kümelenmiş ölümlerde DAHA uzun yaşıyor, çünkü kümeler daha az farklı nesneye çarpıyor.",
+  b:["Arı kovanı medyan ömrü: 26 (bağımsız) vs 63 (kümelenmiş).","Blinker: 46 vs 70.","İzole blok μ=0.005: bağımsızda 400'ün 252'si 3000'e dayandı; kümelenmişte medyan 124 adım."]},
+ {t:"Sınırlılıklar",
+  k:["sinirli","eksik","zayif","kisit","limitation","weakness","limit","shortcoming","problem"],
+  a:"Izgaralar ve süreler sonlu (en fazla 200×200, 3000 adım), çoğu ayarda 40 koşu, sadece bir tür kümelenme (Gauss) denendi, literatür taraması kısa.",
+  b:["3000 adım hayatta kalan bir koşu da sonunda söner (sonlu ızgarada sönme kesin).","Matematiksel ispat değil, simülasyonla doğrulama."]},
+ {t:"Literatür / yenilik",
+  k:["literatur","onceki calisma","yeni ne","ozgun","katki","ekoloji","previous work","literature","novel","new","contribution","ecology","original"],
+  a:"Kümelenmiş felaketlerin daha tehlikeli olduğu ekolojide biliniyor. Yeni olan Game of Life'taki durum ve blok-onarım açıklaması.",
+  b:["Önceki stokastik Life çalışmalarında rastgelelik hep hücre başına bağımsızdı.","Tarama sistematik değildi; böyle bir çalışma var olabilir."]},
+ {t:"Gerçek hayat / uygulama",
+  k:["gercek hayat","uygulama","ne ise yarar","nerede kullanilir","onemi","real world","application","why does it matter","useful","practical","implication"],
+  a:"Genel ders: bir sistemin korelasyonlu gürültüye dayanıklılığı, içindeki yapıların hata düzeltme yeteneğine bağlı. Ekolojide yangın, salgın gibi kümelenmiş felaketlerle benzerlik var."},
+ {t:"Kod / yöntem / araçlar",
+  k:["kod","python","numba","numpy","scipy","nasil yaptin","yontem","tekrar","code","method","implement","reproduc","tool"],
+  a:"Python ile yazdım; NumPy, SciPy (Gauss filtresi, periyodik) ve hız için numba. İki ayrı uygulama birebir aynı sonucu veriyor; tüm tohumlar sabit.",
+  b:["Testler + deneyler + figürler ~25 dakikada yeniden üretilebiliyor.","Defterler Colab'da baştan sona çalışıyor."]},
+ {t:"Yapay zekâ kullanımı",
+  k:["yapay zeka","ai","claude","chatgpt","kendin mi","sen mi yaptin","yardim aldin","artificial","did you do","help"],
+  a:"Açıklamalar, bazı kod parçaları, hata ayıklama ve şekiller için Claude ve ChatGPT'den destek aldım; AI_NOTES.md'de hafta hafta yazıyor. Rapor taslağı danışman incelemesi için AI yardımıyla hazırlandı.",
+  b:["Model fikri ve özgün deneyler (hafta 6) benim; ek deneyler Kasım 2026 incelemesinde yapıldı."]},
+ {t:"Danışman / bağlam",
+  k:["danisman","hoca","levent","itu","kim","yaz projesi","supervisor","who","summer"],
+  a:"Lise yaz araştırma projesi; danışman Prof. Levent Subaşı (İTÜ). Henüz hakemli yayın değil, rapor danışman incelemesi için hazır."},
+ {t:"Sonraki adımlar",
+  k:["sonraki","gelecek","devam","bundan sonra","next","future","further","extend"],
+  a:"Daha büyük ızgaralar ve uzun süreler, farklı kümelenme türleri, daha fazla koşu ve sistematik bir literatür taraması."}
+];
+
+// ---------- EŞLEŞTİRME ----------
+const norm = s => s.toLowerCase()
+  .replace(/ı/g,"i").replace(/ğ/g,"g").replace(/ü/g,"u").replace(/ş/g,"s").replace(/ö/g,"o").replace(/ç/g,"c").replace(/â/g,"a")
+  .replace(/[^a-z0-9=\. ]/g," ").replace(/\s+/g," ").trim();
+KB.forEach(e=>e.nk=e.k.map(norm));
+
+function match(text){
+  const n = " "+norm(text)+" ";
+  return KB.map(e=>{
+    let s=0;
+    e.nk.forEach(k=>{
+      const hit = k.length<=3 ? n.includes(" "+k+" ") : n.includes(k);
+      if(hit) s += k.length>5 ? 2 + k.split(" ").length : 1;
+    });
+    return {e,s};
+  }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,3);
+}
+
+const $ = id=>document.getElementById(id);
+function show(text){
+  if(!text.trim()) return;
+  $("heard").textContent = "Duyulan: " + text;
+  const res = match(text);
+  if(!res.length){ return; } // önceki cevap ekranda kalsın
+  $("answers").innerHTML = res.map((r,i)=>`
+    <div class="card ${i===0?'top':''}">
+      <h3>${r.e.t}</h3>
+      <p>${r.e.a}</p>
+      ${r.e.b && i===0 ? "<ul>"+r.e.b.map(x=>"<li>"+x+"</li>").join("")+"</ul>" : ""}
+    </div>`).join("");
+}
+
+// ---------- KONUŞMA TANIMA (otomatik, sessizlikte sıfırlanır) ----------
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const iOS = /iPad|iPhone/.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
+const SILENCE_MS = 4000;   // 4 sn konuşma yoksa soru bitti say → yeni soruya hazırlan
+let rec=null, on=false, buf="", silenceT=null;
+if(!SR){ $("status").textContent="Ses tanıma yok: Safari/Chrome kullan, Ayarlar > Genel > Klavye > Dikte açık olmalı."; }
+
+function resetQuestion(){
+  buf=""; $("heard").textContent="Duyulan: — (yeni soru bekleniyor)";
+  $("answers").style.opacity="0.45";              // eski cevap soluk kalır, yeni soru gelince değişir
+}
+function heardSomething(){
+  clearTimeout(silenceT); silenceT=setTimeout(resetQuestion, SILENCE_MS);
+}
+function start(){
+  rec = new SR();
+  rec.lang = $("lang").value; rec.interimResults = true;
+  rec.continuous = !iOS;                             // iOS'ta tek seferlik + otomatik yeniden başlatma
+  rec.onresult = ev=>{
+    let interim="";
+    for(let i=ev.resultIndex;i<ev.results.length;i++){
+      const tx = ev.results[i][0].transcript;
+      if(ev.results[i].isFinal){ buf = (buf+" "+tx).split(" ").slice(-40).join(" "); }
+      else interim += tx;
+    }
+    const t=(buf+" "+interim).trim();
+    if(t){ $("answers").style.opacity="1"; show(t.split(" ").slice(-30).join(" ")); heardSomething(); }
+  };
+  rec.onerror = e=>{
+    if(e.error==="not-allowed"||e.error==="service-not-allowed"){
+      on=false; $("mic").classList.remove("on"); $("mic").textContent="🎤 Dinlemeyi başlat";
+      $("status").textContent="Mikrofon izni yok. Ayarlar > Safari > Mikrofon: İzin Ver ve Ayarlar > Genel > Klavye > Dikte: Açık.";
+    } else $("status").textContent="Dinliyor… ("+e.error+")";
+  };
+  rec.onend = ()=>{ if(on) setTimeout(()=>{ try{rec.start()}catch(_){ start(); } }, 150); };
+  try{ rec.start(); $("status").textContent="Dinliyor…"; }catch(e){ $("status").textContent="Başlatılamadı: "+e.message; }
+}
+$("mic").onclick = ()=>{
+  if(!SR) return;
+  on=!on;
+  $("mic").classList.toggle("on",on);
+  $("mic").textContent = on ? "⏹ Durdur" : "🎤 Dinlemeyi başlat";
+  if(on){ buf=""; start(); } else { rec && (rec.onend=null, rec.stop()); clearTimeout(silenceT); $("status").textContent="Durdu"; }
+};
+$("lang").onchange = ()=>{ if(on){ rec.onend=null; rec.stop(); buf=""; start(); } };
+$("q").addEventListener("input", e=>show(e.target.value));
+</script>
+</body>
+</html>
